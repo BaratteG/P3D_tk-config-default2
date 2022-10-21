@@ -98,6 +98,9 @@ class BeforeAppLaunch(tank.Hook):
             # Add Studio Library.
             self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\studiolibrary\\2.9.6.b3\\src")
 
+            # Add Rag doll.
+            self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\ragdoll\\2022.07.20")
+
             # Set up for version.
             if(version == "2022"):
                 # Add Frankenstein.
