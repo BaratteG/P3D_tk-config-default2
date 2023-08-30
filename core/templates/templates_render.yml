@@ -1,0 +1,18 @@
+
+paths:
+
+    # ASSET TEMPLATES
+
+    asset_exrTurnTableAOVs_publish:
+        definition: "@asset_publish_root/turnTable/v{version}/{pass}/{aov}/{Step}_{Asset}_{pass}_{aov}.v{version}.exr"
+
+    asset_exrTurnTable_publish:
+        definition: "@asset_publish_root/turnTable/v{version}/{pass}/{Step}_{Asset}_{pass}.v{version}.exr"
+
+    # SHOT TEMPLATES
+
+    shot_exrRenderAOVs_publish:
+        definition: "@shot_publish_root/v{version}/{pass}/{aov}/{Step}_{Shot}_{pass}_{aov}.v{version}.exr"
+
+    shot_exrRender_publish:
+        definition: "@shot_publish_root/v{version}/{pass}/{Step}_{Shot}_{pass}.v{version}.exr"
