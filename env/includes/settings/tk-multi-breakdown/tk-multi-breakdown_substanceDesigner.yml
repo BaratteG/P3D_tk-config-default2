@@ -1,0 +1,7 @@
+
+includes:
+- ../../app_locations.yml
+
+settings.tk-multi-breakdown.substancedesigner:
+  hook_scene_operations: '{engine}/tk-multi-breakdown/tk-substancedesigner_scene_operations.py'
+  location: "@apps.tk-multi-breakdown.location"
