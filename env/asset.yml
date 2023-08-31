@@ -30,6 +30,7 @@ includes:
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-substancepainter.yml
 - ./includes/settings/tk-substancedesigner.yml
+- ./includes/settings/tk-blender.yml
 
 ################################################################################
 # configuration for all engines to load in an asset context
@@ -43,7 +44,8 @@ engines:
   tk-shotgun: "@settings.tk-shotgun.asset"
   tk-substancepainter: "@settings.tk-substancepainter.asset"
   tk-substancedesigner: "@settings.tk-substancedesigner.asset"
-  
+  tk-blender: "@settings.tk-blender.asset"
+
 ################################################################################
 # reference all of the common frameworks
 

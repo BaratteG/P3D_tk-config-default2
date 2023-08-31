@@ -211,6 +211,7 @@ includes:
 - ./templates/templates_render.yml
 - ./templates/templates_sceneDescription.yml
 - ./templates/templates_substancePainter.yml
+- ./templates/templates_blender.yml
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
