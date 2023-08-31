@@ -65,19 +65,7 @@ settings.tk-multi-snapshot.houdini.shot_step:
 
 ################################################################################
 
-# ---- Maya
 
-# asset step
-settings.tk-multi-snapshot.maya.asset_step:
-  template_snapshot: maya_asset_snapshot
-  template_work: maya_asset_work
-  location: "@apps.tk-multi-snapshot.location"
-
-# shot step
-settings.tk-multi-snapshot.maya.shot_step:
-  template_snapshot: maya_shot_snapshot
-  template_work: maya_shot_work
-  location: "@apps.tk-multi-snapshot.location"
 
 ################################################################################
 
@@ -145,14 +133,5 @@ settings.tk-multi-snapshot.motionbuilder.shot_step:
   template_work: mobu_shot_work
   location: "@apps.tk-multi-snapshot.location"
 
-# ---- Substance Painter
-
-# asset step
-settings.tk-multi-snapshot.substancepainter.asset_step:
-  hook_scene_operation: "{engine}/tk-multi-snapshot/scene_operation_tk-substancepainter.py"
-  template_snapshot: substancepainter_asset_snapshot
-  template_work: substancepainter_asset_work
-  hook_thumbnail: "{engine}/thumbnail.py"
-  location: "@apps.tk-multi-snapshot.location"
 
 ################################################################################

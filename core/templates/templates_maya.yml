@@ -20,7 +20,7 @@ paths:
         definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.mov'
     # The location of the asset previews movie file.
     maya_asset_movie_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.{movie_extension}'
+        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.mp4'
     maya_asset_smoothShaded_previews:
         definition: '@asset_work_root/review/v{version}/{Step}_{Asset}_smoothShaded.v{version}.{movie_extension}'
     maya_asset_smoothShadedWire_previews:

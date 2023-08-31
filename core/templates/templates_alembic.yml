@@ -21,7 +21,7 @@ paths:
         definition: "@shot_publish_root/v{version}/{Step}_{Shot}_{lod}_{instance}.v{version}.abc"
 
     shot_houdini_alembic_publish:
-        definition: "@shot_publish_root/v{version}/{Step}_{Shot}_{assetName}_{houdini.node}_{instance}.v{version}.abc"
+        definition: "@shot_publish_root/v{version}/{Step}_{Shot}_{Asset}_{houdini.node}_{instance}.v{version}.abc"
 
     shot_houdini_alembic_LOD_publish:
-        definition: "@shot_publish_root/v{version}/{Step}_{Shot}_{assetName}_{houdini.node}_{lod}_{instance}.v{version}.abc"
+        definition: "@shot_publish_root/v{version}/{Step}_{Shot}_{Asset}_{houdini.node}_{lod}_{instance}.v{version}.abc"

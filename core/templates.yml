@@ -177,6 +177,29 @@ keys:
         format_spec: "05"
         alias: SEQ
 
+    movie_extension:
+        type: str
+        choices:
+            mp4: H.264 classic extension (.mp4)
+            mov: Quicktime Movie (.mov)
+        default: mp4
+        alias: extension
+
+paths:
+    asset_root: assets/{sg_asset_type}/{Asset}
+    sequence_root: sequences/{Sequence}
+    shot_root: "@sequence_root/{Shot}"
+
+
+    asset_publish_root: 
+        definition: "@asset_root/publish/{Step}"
+    asset_work_root:
+        definition: "@asset_root/work/{Step}"
+    shot_publish_root:
+        definition: "@shot_root/publish/{Step}"
+    shot_work_root:
+        definition: "@shot_root/work/{Step}"
+
 includes:
 - ./templates/templates_aftereffect.yml
 - ./templates/templates_alembic.yml

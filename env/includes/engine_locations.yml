@@ -67,5 +67,5 @@ engines.tk-shotgun.location:
   
 engines.tk-substancepainter.location:
   type: git
-  path: https://github.com/diegogarciahuerta/tk-substancepainter
-  version: v1.2.2
+  path: https://github.com/lola-post/tk-substancepainter
+  version: v1.2.2.4
