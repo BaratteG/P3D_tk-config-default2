@@ -29,6 +29,7 @@ includes:
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-blender.yml
+- ./includes/settings/tk-harmony.yml
 
 ################################################################################
 # configuration for all engines to load in a shot context
@@ -41,6 +42,7 @@ engines:
   tk-shell: "@settings.tk-shell.shot"
   tk-shotgun: "@settings.tk-shotgun.shot"
   tk-blender: "@settings.tk-blender.shot"
+  tk-harmony: "@settings.tk-harmony.shot"
 
 ################################################################################
 # reference all of the common frameworks

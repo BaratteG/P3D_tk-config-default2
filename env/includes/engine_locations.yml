@@ -79,3 +79,8 @@ engines.tk-blender.location:
   type: git
   path: https://github.com/BaratteG/tk-blender
   version: v1.1.2
+
+engines.tk-harmony.location:
+  type: git
+  path: https://github.com/mightyanimation/tk-harmony
+  version: v2.0.0-1
