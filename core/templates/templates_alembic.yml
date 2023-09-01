@@ -1,27 +1,15 @@
 
 paths:
 
-    # ASSET TEMPLATES
+    # ASSET PUBLISH TEMPLATES
 
-    asset_alembic_cache:
-        definition: '@asset_root/publish/caches/{name}.v{version}.abc'
+    asset_alembic_publish_cache:
+        definition: "@asset_publish_root/v{version}/{Step}_{Asset}[_{variant}][_{lod}].v{version}.abc"
 
-    asset_alembic_publish:
-        definition: "@asset_publish_root/v{version}/{Step}_{Asset}_{lod}.v{version}.abc"
+    # SHOT PUBLISH TEMPLATES
 
-    asset_alembic_withoutLOD_publish:
-        definition: "@asset_publish_root/v{version}/{Step}_{Asset}.v{version}.abc"
+    shot_asset_alembic_publish_cache:
+        definition: "@shot_publish_root/assets/v{version}/{Step}_{Shot}_{Asset}[_{variant}][_{lod}]_{instance}.v{version}.abc"
 
-    # SHOT TEMPLATES
-
-    shot_alembic_publish:
-        definition: "@shot_publish_root/v{version}/{Step}_{Shot}_{instance}.v{version}.abc"
-
-    shot_alembic_LOD_publish:
-        definition: "@shot_publish_root/v{version}/{Step}_{Shot}_{lod}_{instance}.v{version}.abc"
-
-    shot_houdini_alembic_publish:
-        definition: "@shot_publish_root/v{version}/{Step}_{Shot}_{Asset}_{houdini.node}_{instance}.v{version}.abc"
-
-    shot_houdini_alembic_LOD_publish:
-        definition: "@shot_publish_root/v{version}/{Step}_{Shot}_{Asset}_{houdini.node}_{lod}_{instance}.v{version}.abc"
+    shot_camera_alembic_publish_cache:
+        definition: "@shot_publish_root/camera/v{version}/{Step}_{Shot}_{camera}[_{instance}].v{version}.abc"

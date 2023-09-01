@@ -1,0 +1,7 @@
+
+type: "static"
+
+constrain_by_entity: "Step"
+
+constraints:
+- {"path": "short_name", "relation" : "is", "values" : ["Light", "Comp"]}

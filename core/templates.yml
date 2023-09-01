@@ -71,6 +71,8 @@ keys:
         type: str
     instance:
         type: str
+    camera:
+        type: str
 
     # Represents the optional output name for frames written by the Shotgun Write Node
     nuke.output:
@@ -186,19 +188,30 @@ keys:
         alias: extension
 
 paths:
-    asset_root: assets/{sg_asset_type}/{Asset}
-    sequence_root: sequences/{Sequence}
-    shot_root: "@sequence_root/{Shot}"
+    # Define the asset main root.
+    asset_root: 
+        definition: assets/{sg_asset_type}/{Asset}
+    # Define the sequence main root.
+    sequence_root:
+        definition: sequences/{Sequence}
+    # Define the shot main root.
+    shot_root: 
+        definition: "@sequence_root/{Shot}"
 
-
-    asset_publish_root: 
-        definition: "@asset_root/publish/{Step}"
+    # Define the asset main work step root.
     asset_work_root:
         definition: "@asset_root/work/{Step}"
-    shot_publish_root:
-        definition: "@shot_root/publish/{Step}"
+    # Define the asset mina publish step root. 
+    asset_publish_root: 
+        definition: "@asset_root/publish/{Step}"
+
+    # Define the shot main work step root.
     shot_work_root:
         definition: "@shot_root/work/{Step}"
+    # Define the shot main publish step root.
+    shot_publish_root:
+        definition: "@shot_root/publish/{Step}"
+
 
 includes:
 - ./templates/templates_aftereffect.yml

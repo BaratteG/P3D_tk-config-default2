@@ -152,10 +152,7 @@ class BeforeAppLaunch(tank.Hook):
                 self.addToEnvironmentEnd('NUKE_PATH', 'O:\\shows\\KML\\library\\compositing\\.nuke\\ProductionTools')
 
         elif(software_entity['code'] == "Toon Boom Harmony"):
-            self.logger.info('* Config Hook : Setup environ paths')
-            self.addToEnvironmentBegin('PYTHON_LIB_PATH ', 'C:/Users/guillaume.baratte/AppData/Local/Programs/Python/Python39')
-
-
+            pass
         elif(software_entity["code"] == "Guerilla"):
             pass
         elif(software_entity["code"] == "Painter"):

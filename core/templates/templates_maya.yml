@@ -1,17 +1,57 @@
 
 paths:
     
-    # ASSET TEMPLATES
+    # ASSET WORK TEMPLATES.
 
-    # define the location of a work area
-    asset_work_area_maya:
-        definition: '@asset_work_root/maya'
+    # Define the asset working file path.
+    maya_asset_work:
+        definition: '@asset_work_root/maya/{Step}_{Asset}[_{variant}]_{name}.v{version}.{maya_extension}'
+
+    # Define the asset previews file path.
+    maya_asset_movie_previews:
+        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}[_{variant}].v{version}.{movie_extension}'
+    maya_asset_smoothShaded_previews:
+        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}[_{variant}]_smoothShaded.v{version}.{movie_extension}'
+    maya_asset_smoothShadedWire_previews:
+        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}[_{variant}]_smoothShadedWire.v{version}.{movie_extension}'
+    maya_asset_image_sequence_previews:
+        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}[_{variant}].v{version}.{timestamp}.exr'
+
+    # Define the asset render file path.
+    maya_asset_render_directory:
+        definition: '@asset_work_root/render/v{version}'
+    maya_asset_render_assFiles:
+        definition: '@maya_asset_render_directory/assFiles'
+    maya_asset_render_path:
+        definition: '@maya_asset_render_directory/<RenderLayer>/{Step}_{Asset}[_{variant}]_<RenderLayer>.v{version}'    
+
+    # ASSET PUBLISH TEMPLATES.
+
+    # Define the asset rig publish file path.
+    maya_asset_publish:
+        definition: '@asset_publish_root/v{version}/{Step}_{Asset}[_{lod}].v{version}.{maya_extension}'
+
+
+    # SHOT WORK TEMPLATES.
+
+    # Define the shot working file path.
+    maya_shot_work:
+        definition: '@shot_work_root/maya/{Step}_{Shot}_{name}.v{version}.{maya_extension}'
+
+    # Define the shot previews file path.
+    maya_shot_movie_previews:
+        definition: '@shot_work_root/review/v{version}/{Step}_{Shot}.v{version}.{movie_extension}'
+    maya_shot_image_sequence_previews:
+        definition: '@shot_work_root/review/v{version}/{Step}_{Shot}.v{version}.{timestamp}.exr'
+
+
+
+
     # define the location of a publish area
     asset_publish_area_maya:
         definition: '@asset_publish_root/maya'
     # The location of WIP files
-    maya_asset_work:
-        definition: '@asset_work_root/maya/{Step}_{Asset}_{name}.v{version}.{maya_extension}'
+
     # The location of backups of WIP files
     maya_asset_snapshot:
         definition: '@asset_work_root/maya/snapshots/{Step}_{Asset}_{name}.v{version}.{timestamp}.{maya_extension}'
@@ -20,7 +60,7 @@ paths:
         definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.mov'
     # The location of the asset previews movie file.
     maya_asset_movie_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.mp4'
+        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.{movie_extension}'
     maya_asset_smoothShaded_previews:
         definition: '@asset_work_root/review/v{version}/{Step}_{Asset}_smoothShaded.v{version}.{movie_extension}'
     maya_asset_smoothShadedWire_previews:
