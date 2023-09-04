@@ -1,7 +1,7 @@
 
 type: "static"
 
-constrain_by_entity: "Step"
+constrain_by_entity: "$step"
 
 constraints:
 - {"path": "short_name", "relation" : "is", "values" : ["Light", "Comp"]}
