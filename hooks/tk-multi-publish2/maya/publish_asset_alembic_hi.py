@@ -6,9 +6,9 @@ import sgtk
 
 from tank_vendor import six
 
-# Import the maya module of the P3D framework.
-P3Dfw = sgtk.platform.current_engine().frameworks["tk-framework-P3D"].import_module("maya")
-publihTools = P3Dfw.PublishTools()
+from pipelineFramework.maya         import PublishTools
+
+publihTools = PublishTools()
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -16,7 +16,7 @@ class MayaAssetAlembicHIPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        self.logger.info("Asset Alembic Low Publish | accept")
+        self.logger.info("Asset Alembic HI Publish | accept")
 
         accepted = True
         # Get the publish plugin publish template.
@@ -36,16 +36,15 @@ class MayaAssetAlembicHIPublishPlugin(HookBaseClass):
         # Check if the group MI is not empty.
         # If its empty we don't need to publish it.
         meshes = mayaAsset.meshesHI
-        if(len(meshes) == 0):
-            self.logger.debug("The Low group is empty.")
+        if(meshes is None):
+            self.logger.debug("The HI group is empty.")
             accepted= False
 
         return {"accepted": accepted, "checked": True}
 
-
     def validate(self, settings, item):
 
-        self.logger.info("Asset Alembic Low Publish | validate")
+        self.logger.info("Asset Alembic HI Publish | validate")
 
         # We use the MayaAsset class stored in the item to check if the current asset is a valid asset.
         mayaAsset = item.parent.properties.get("assetObject")
@@ -58,6 +57,8 @@ class MayaAssetAlembicHIPublishPlugin(HookBaseClass):
 
         # Add the publish path datas to the publish item.
         # That allow us to reuse the datas for the publish.
+        addFields = {"lod":"HI"}
+        
         publihTools.addPublishDatasToPublishItem(self, item, self.propertiesPublishTemplate, addFields={"lod":"HI"})
 
         # run the base class validation

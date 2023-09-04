@@ -116,6 +116,10 @@ class BeforeAppLaunch(tank.Hook):
                 # Add aTools.
                 self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\aTools\\2.02\\module")
 
+            elif(version == "2024"):
+                # Add Studio Library.
+                self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
+
             else:
                 pass
         

@@ -6,9 +6,9 @@ import sgtk
 
 from tank_vendor import six
 
-# Import the maya module of the P3D framework.
-P3Dfw = sgtk.platform.current_engine().frameworks["tk-framework-P3D"].import_module("maya")
-publihTools = P3Dfw.PublishTools()
+from pipelineFramework.maya         import PublishTools
+
+publihTools = PublishTools()
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -36,7 +36,7 @@ class MayaAssetAlembicTECHPublishPlugin(HookBaseClass):
         # Check if the group MI is not empty.
         # If its empty we don't need to publish it.
         meshes = mayaAsset.meshesTechnical
-        if(len(meshes) == 0):
+        if(meshes):
             self.logger.debug("The Technical group is empty.")
             accepted= False
 

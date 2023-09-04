@@ -7,9 +7,9 @@ includes:
 # asset_step
 settings.tk-multi-workfiles2.maya.asset_step:
   template_publish: maya_asset_publish
-  template_publish_area: asset_publish_area_maya
+  template_publish_area: asset_publish_root
   template_work: maya_asset_work
-  template_work_area: asset_work_area_maya
+  template_work_area: maya_asset_work_area
   entities:
   - caption: Assets
     entity_type: Asset

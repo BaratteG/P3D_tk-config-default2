@@ -23,16 +23,16 @@ from tank_vendor import six
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-# Import the maya module of the P3D framework.
-P3Dfw = sgtk.platform.current_engine().frameworks["tk-framework-P3D"].import_module("maya")
-loadTools = P3Dfw.LoadTools()
+
+from pipelineFramework.maya         import LoadTools
+
+loadTools = LoadTools()
+
 
 class MayaActions(HookBaseClass):
 
     def __init__(self, *args):
         super(MayaActions, self).__init__(*args)
-
-        self.P3Dfw = self.load_framework("tk-framework-P3D_v0.x.x")
 
     ##############################################################################################################
     # public interface - to be overridden by deriving classes

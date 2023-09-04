@@ -6,9 +6,9 @@ import sgtk
 
 from tank_vendor import six
 
-# Import the maya module of the P3D framework.
-P3Dfw = sgtk.platform.current_engine().frameworks["tk-framework-P3D"].import_module("maya")
-publihTools = P3Dfw.PublishTools()
+from pipelineFramework.maya         import PublishTools
+
+publihTools = PublishTools()
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -16,7 +16,7 @@ class MayaAssetAlembicMIPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        self.logger.info("Asset Alembic Mi Publish | accept")
+        self.logger.info("Asset Alembic MI Publish | accept")
 
         accepted = True
         # Get the publish plugin publish template.
@@ -35,9 +35,9 @@ class MayaAssetAlembicMIPublishPlugin(HookBaseClass):
         mayaAsset = item.parent.properties.get("assetObject")
         # Check if the group MI is not empty.
         # If its empty we don't need to publish it.
-        meshesMI = mayaAsset.meshesMI
-        if(len(meshesMI) == 0):
-            self.logger.debug("The Mi group is empty.")
+        meshes = mayaAsset.meshesMI
+        if(meshes is None):
+            self.logger.debug("The MI group is empty.")
             accepted= False
 
         return {"accepted": accepted, "checked": True}

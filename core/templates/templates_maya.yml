@@ -4,8 +4,10 @@ paths:
     # ASSET WORK TEMPLATES.
 
     # Define the asset working file path.
+    maya_asset_work_area:
+        definition: '@asset_work_root/maya'
     maya_asset_work:
-        definition: '@asset_work_root/maya/{Step}_{Asset}[_{variant}]_{name}.v{version}.{maya_extension}'
+        definition: '@maya_asset_work_area/{Step}_{Asset}[_{variant}]_{name}.v{version}.{maya_extension}'
 
     # Define the asset previews file path.
     maya_asset_movie_previews:
@@ -47,82 +49,83 @@ paths:
 
 
 
-    # define the location of a publish area
-    asset_publish_area_maya:
-        definition: '@asset_publish_root/maya'
-    # The location of WIP files
-
-    # The location of backups of WIP files
+    ## define the location of a publish area
+    #asset_publish_area_maya:
+    #    definition: '@asset_publish_root/maya'
+    ## The location of WIP files
+#
+    ## The location of backups of WIP files
     maya_asset_snapshot:
         definition: '@asset_work_root/maya/snapshots/{Step}_{Asset}_{name}.v{version}.{timestamp}.{maya_extension}'
-    # The location of the asset previews file.
-    maya_asset_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.mov'
-    # The location of the asset previews movie file.
-    maya_asset_movie_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.{movie_extension}'
-    maya_asset_smoothShaded_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}_smoothShaded.v{version}.{movie_extension}'
-    maya_asset_smoothShadedWire_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}_smoothShadedWire.v{version}.{movie_extension}'
-    # The location of the asset previews image sequence files.
-    maya_asset_image_sequence_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.{timestamp}.exr'
-    # The location of published maya files
-    maya_asset_publish:
-        definition: '@asset_publish_root/v{version}/{Step}_{Asset}.v{version}.{maya_extension}'
-
-    maya_asset_rig_publish:
-        definition: '@asset_publish_root/v{version}/{Step}_{Asset}_{lod}.v{version}.{maya_extension}'
-
-    maya_asset_render_directory:
-        definition: '@asset_work_root/render/v{version}'
-
-    maya_asset_render_assFiles:
-        definition: '@maya_asset_render_directory/assFiles'
-
-    maya_asset_render_path:
-        definition: '@maya_asset_render_directory/<RenderLayer>/{Step}_{Asset}_<RenderLayer>.v{version}'
-
-    # SHOT TEMPLATES
-
-    # define the location of a work area
-    shot_work_area_maya:
-        definition: '@shot_work_root/maya'
-    # define the location of a publish area
-    shot_publish_area_maya:
-        definition: '@shot_publish_root/maya'
-    # The location of WIP files
-    maya_shot_work:
-        definition: '@shot_work_root/maya/scenes/{Step}_{Shot}_{name}.v{version}.{maya_extension}'
-    # The location of backups of WIP files
-    maya_shot_snapshot:
-        definition: '@shot_work_root/work/maya/snapshots/{Step}_{Shot}_{name}.v{version}.{timestamp}.{maya_extension}'
-    # The location of published maya files
-    maya_shot_publish:
-        definition: '@shot_publish_root/v{version}/{Step}_{Shot}_{name}.v{version}.{maya_extension}'
-    # The location of the shot previews movie file.
-    maya_shot_movie_previews:
-        definition: '@shot_work_root/review/v{version}/{Step}_{Shot}.v{version}.{movie_extension}'
-    # The location of the shot alembic file.
-    maya_shot_publish_alembic:
-        definition: '@shot_publish_root/assets/v{version}/{Step}_{Shot}_{Asset}_{instance}_{lod}_v{version}.abc'
-    # The location of the shot camera file.
-    maya_shot_publish_camera:
-        definition: '@shot_publish_root/camera/v{version}/{Step}_{Shot}_camera_{name}_v{version}.ma'
-    # The location of the shot camera alembic file.
-    maya_shot_publish_camera_alembic:
-        definition: '@shot_publish_root/camera/v{version}/{Step}_{Shot}_camera_{name}_v{version}.abc'
-    # The location of the shot set dress file.
-    maya_shot_publish_setDress:
-        definition: '@shot_publish_root/setDress/v{version}/{Step}_{Shot}_setDress_v{version}.abc'
-    # The location of the shot previews file.
-    maya_shot_movie_previews:
-        definition: '@shot_work_root/review/v{version}/{Step}_{Shot}.v{version}.{movie_extension}'
-    # The location of the rendered image.
-    maya_shot_render_directory:
-        definition : '@shot_publish_root/render/v{version}'
-    maya_shot_render_assFiles:
-        definition : '@maya_shot_render_directory/assFiles'
-    maya_shot_render_path:
-        definition : '@maya_shot_render_directory/<RenderLayer>/{Step}_{Shot}_<RenderLayer>.v{version}'
+    ## The location of the asset previews file.
+    #maya_asset_previews:
+    #    definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.mov'
+    ## The location of the asset previews movie file.
+    #maya_asset_movie_previews:
+    #    definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.{movie_extension}'
+    #maya_asset_smoothShaded_previews:
+    #    definition: '@asset_work_root/review/v{version}/{Step}_{Asset}_smoothShaded.v{version}.{movie_extension}'
+    #maya_asset_smoothShadedWire_previews:
+    #    definition: '@asset_work_root/review/v{version}/{Step}_{Asset}_smoothShadedWire.v{version}.{movie_extension}'
+    ## The location of the asset previews image sequence files.
+    #maya_asset_image_sequence_previews:
+    #    definition: '@asset_work_root/review/v{version}/{Step}_{Asset}.v{version}.{timestamp}.exr'
+    ## The location of published maya files
+    #maya_asset_publish:
+    #    definition: '@asset_publish_root/v{version}/{Step}_{Asset}.v{version}.{maya_extension}'
+#
+    #maya_asset_rig_publish:
+    #    definition: '@asset_publish_root/v{version}/{Step}_{Asset}_{lod}.v{version}.{maya_extension}'
+#
+    #maya_asset_render_directory:
+    #    definition: '@asset_work_root/render/v{version}'
+#
+    #maya_asset_render_assFiles:
+    #    definition: '@maya_asset_render_directory/assFiles'
+#
+    #maya_asset_render_path:
+    #    definition: '@maya_asset_render_directory/<RenderLayer>/{Step}_{Asset}_<RenderLayer>.v{version}'
+#
+    ## SHOT TEMPLATES
+#
+    ## define the location of a work area
+    #shot_work_area_maya:
+    #    definition: '@shot_work_root/maya'
+    ## define the location of a publish area
+    #shot_publish_area_maya:
+    #    definition: '@shot_publish_root/maya'
+    ## The location of WIP files
+    #maya_shot_work:
+    #    definition: '@shot_work_root/maya/scenes/{Step}_{Shot}_{name}.v{version}.{maya_extension}'
+    ## The location of backups of WIP files
+    #maya_shot_snapshot:
+    #    definition: '@shot_work_root/work/maya/snapshots/{Step}_{Shot}_{name}.v{version}.{timestamp}.{maya_extension}'
+    ## The location of published maya files
+    #maya_shot_publish:
+    #    definition: '@shot_publish_root/v{version}/{Step}_{Shot}_{name}.v{version}.{maya_extension}'
+    ## The location of the shot previews movie file.
+    #maya_shot_movie_previews:
+    #    definition: '@shot_work_root/review/v{version}/{Step}_{Shot}.v{version}.{movie_extension}'
+    ## The location of the shot alembic file.
+    #maya_shot_publish_alembic:
+    #    definition: '@shot_publish_root/assets/v{version}/{Step}_{Shot}_{Asset}_{instance}_{lod}_v{version}.abc'
+    ## The location of the shot camera file.
+    #maya_shot_publish_camera:
+    #    definition: '@shot_publish_root/camera/v{version}/{Step}_{Shot}_camera_{name}_v{version}.ma'
+    ## The location of the shot camera alembic file.
+    #maya_shot_publish_camera_alembic:
+    #    definition: '@shot_publish_root/camera/v{version}/{Step}_{Shot}_camera_{name}_v{version}.abc'
+    ## The location of the shot set dress file.
+    #maya_shot_publish_setDress:
+    #    definition: '@shot_publish_root/setDress/v{version}/{Step}_{Shot}_setDress_v{version}.abc'
+    ## The location of the shot previews file.
+    #maya_shot_movie_previews:
+    #    definition: '@shot_work_root/review/v{version}/{Step}_{Shot}.v{version}.{movie_extension}'
+    ## The location of the rendered image.
+    #maya_shot_render_directory:
+    #    definition : '@shot_publish_root/render/v{version}'
+    #maya_shot_render_assFiles:
+    #    definition : '@maya_shot_render_directory/assFiles'
+    #maya_shot_render_path:
+    #    definition : '@maya_shot_render_directory/<RenderLayer>/{Step}_{Shot}_<RenderLayer>.v{version}'
+#
