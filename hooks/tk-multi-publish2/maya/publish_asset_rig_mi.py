@@ -11,9 +11,9 @@ import inspect
 
 from tank_vendor import six
 
-from pipelineFramework.maya         import PublishTools
+from pipelineFramework.maya.hookPublishs  import HookPublishRig
 
-publihTools = PublishTools()
+hooksPublish = HookPublishRig()
 
 # Inherit from {self}/publish_file.py 
 # Check config.env.includes.settings.tk-multi-publish2.yml
@@ -24,37 +24,33 @@ class MayaAssetRigMIPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        return publihTools.hookPublishAcceptLOD(
+        return hooksPublish.acceptLOD(
             self,
             settings,
             item,
             self.publishTemplate,
-            self.propertiesPublishTemplate,
-            "MI"
+            self.propertiesPublishTemplate
         )
 
     def validate(self, settings, item):
 
-        publihTools.hookPublishValidate(
+        hooksPublish.validate(
             self,
             settings,
             item,
             self.propertiesPublishTemplate,
-            isChild=True,
-            addFields={"lod":"MI"}
+            isChild=True
         )
 
         # run the base class validation
         return super(MayaAssetRigMIPublishPlugin, self).validate(settings, item)
 
-
     def publish(self, settings, item):
 
-        publihTools.hookPublishMayaSceneLODPublish(
+        hooksPublish.publishRigLOD(
             self,
             settings,
             item,
-            "MI",
             isChild=True
         )
 

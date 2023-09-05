@@ -18,7 +18,10 @@ HookBaseClass = sgtk.get_hook_baseclass()
 
 from pipelineFramework.shotgrid     import Shotgrid
 from pipelineFramework.maya         import MayaAsset
-from pipelineFramework.maya         import MayaCollectorTools
+
+from pipelineFramework.maya.collectors  import MayaCollectorModeling
+from pipelineFramework.maya.collectors  import MayaCollectorRig
+
 
 class MayaSessionCollector(HookBaseClass):
     """
@@ -66,21 +69,21 @@ class MayaSessionCollector(HookBaseClass):
         :param parent_item: Root item instance
 
         """
-        # Get the collector from pipelineFramework.
-        collector = MayaCollectorTools(self)
+
         # Get shotgrid api from pipelineFramework.
         sg = Shotgrid()
+
         # Check the current entity type.
         if(sg.currentEntity["type"] == "Asset"):
+            collector = None
             # Set the P3D publish pipeline.
             if(sg.currentStep["name"] == "Model" or
                 sg.currentStep["name"] == "UV"):
-                # Collect the data for a Model Publish.
-                collector.collect_modeling_asset(settings, parent_item)
+                collector = MayaCollectorModeling(self)
 
             elif(sg.currentStep["name"] == "Rig"):
                 # Collect the data for a Rig Publish.
-                collector.collect_rig_asset(settings, parent_item)
+                collector = MayaCollectorRig(self)
 
             elif(sg.currentStep["name"] == "Shading"):
                 # Collect the data for the shading publish.
@@ -89,6 +92,8 @@ class MayaSessionCollector(HookBaseClass):
             elif(sg.currentStep["name"] == "Set Dress Asset"):
                 # Collect the data for the set dress publish.
                 collector.collect_asset_sceneDescription(settings, parent_item)
+
+            collector.collect(settings, parent_item)
 
 
         elif(sg.currentEntity["type"] == "Shot"):

@@ -4,4 +4,4 @@ paths:
     # ASSET TEMPLATES
 
     asset_materialX_publish:
-        definition: "@asset_publish_root/v{version}/{Step}_{Asset}_{lod}_{variant}.v{version}.mtlx"
+        definition: "@asset_publish_root/v{version}/{Step}_{Asset}[_{variant}]_{lod}.v{version}.mtlx"

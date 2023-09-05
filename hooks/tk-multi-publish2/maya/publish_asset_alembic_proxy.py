@@ -6,13 +6,8 @@ import sgtk
 
 from tank_vendor import six
 
-from pipelineFramework.maya         import PublishTools
-from pipelineFramework.shotgrid     import Shotgrid
-from pipelineFramework.templates    import TemplateTools
-
-publihTools     = PublishTools()
-sg              = Shotgrid()
-templateTools   = TemplateTools()
+from pipelineFramework.maya.hookPublishs    import HookPublishAlembic
+hooksPublish = HookPublishAlembic()
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -20,89 +15,35 @@ class MayaAssetAlembicPROXYPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        self.logger.info("Asset Alembic PROXY Publish | accept")
-
-        accepted = True
-        # Get the publish plugin publish template.
-        # This template is assgin in config.env.includes.settings.tk-multi-publish2.yml
-        template_name = settings[self.publishTemplate].value
-        # Check if the template is valid.
-        accepted, publish_template = publihTools.checkPublishTemplate(self, template_name)
-        # we've validated the publish template. add it to the item properties
-        # for use in subsequent methods
-        item.properties[self.propertiesPublishTemplate] = publish_template
-        # because a publish template is configured, disable context change. This
-        # is a temporary measure until the publisher handles context switching
-        # natively.
-        item.context_change_allowed = False
-        # We use the MayaAsset Class stored in the item to do checking.
-        mayaAsset = item.parent.properties.get("assetObject")
-        # Check if the group PROXY is not empty.
-        # If its empty we don't need to publish it.
-        meshes = mayaAsset.meshesPROXY
-        if(meshes is None):
-            self.logger.debug("The PROXY group is empty.")
-            accepted= False
-
-        return {"accepted": accepted, "checked": True}
-
+        return hooksPublish.acceptLOD(
+            self,
+            settings,
+            item,
+            self.publishTemplate,
+            self.propertiesPublishTemplate
+        )
 
     def validate(self, settings, item):
 
-        self.logger.info("Asset Alembic PROXY Publish | validate")
-
-        # We use the MayaAsset class stored in the item to check if the current asset is a valid asset.
-        mayaAsset = item.parent.properties.get("assetObject")
-
-        # Check if the asset root is a valid asset.
-        if not (mayaAsset.isValid()):
-            error_msg = "The asset %s is not a valid. Please check the asset group structure."
-            self.logger.error(error_msg, extra=_get_save_as_action)
-            raise Exception(error_msg)
-
-        # Add the publish path datas to the publish item.
-        # That allow us to reuse the datas for the publish.
-        tagFields = {"lod":"PROXY"}
-
-        # Check if the current task as variant.
-        taskName        = sg.currentTask["name"]
-        taskVariant     = None
-        taskTemplateName, taskTemplate, taskTagsValues = templateTools.getTaskNamingTemplate(taskName)
-        if(taskTemplateName):
-            if("variant" in taskTagsValues):
-                tagFields["variant"] = taskTagsValues["variant"]
-
-        
-        publihTools.addPublishDatasToPublishItem(self, item, self.propertiesPublishTemplate, addFields=tagFields)
+        hooksPublish.validate(
+            self,
+            settings,
+            item,
+            self.propertiesPublishTemplate,
+            isChild=True
+        )
 
         # run the base class validation
         return super(MayaAssetAlembicPROXYPublishPlugin, self).validate(settings, item)
 
     def publish(self, settings, item):
 
-        self.logger.info("Asset Publish | publish")
-
-        publisher = self.parent
-
-        # Get the item asset object.
-        mayaObject = item.parent.properties["assetObject"]
-
-        # get the path to create and publish
-        publish_path = item.properties["path"]
-
-        # ensure the publish folder exists:
-        publish_folder = os.path.dirname(publish_path)
-        self.parent.ensure_folder_exists(publish_folder)
-
-        # Get the PROXY meshes from the maya asset.
-        meshes = mayaObject.meshesPROXY
-
-        # Export the alembic.
-        publihTools.exportAlembic(
-            meshes,
-            1,
-            1,
-            publish_path)
+        hooksPublish.publishAlembicLOD(
+            self,
+            settings,
+            item,
+            isChild=True
+        )
 
         # let the base class register the publish
         super(MayaAssetAlembicPROXYPublishPlugin, self).publish(settings, item)
