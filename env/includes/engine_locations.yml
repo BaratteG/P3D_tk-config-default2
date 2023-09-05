@@ -16,7 +16,7 @@
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.6.4
+  version: v2.6.9
 
 engines.tk-desktop2.location:
   type: app_store
@@ -49,12 +49,12 @@ engines.tk-maya.location:
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.14.4
+  version: v0.14.6
 
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.9.3
+  version: v1.9.5
 
 engines.tk-shell.location:
   type: app_store
