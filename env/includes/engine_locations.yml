@@ -23,27 +23,28 @@ engines.tk-desktop2.location:
   name: tk-desktop2
   version: v1.5.1
 
-# engines.tk-houdini.location:
-#  type: app_store
-#  name: tk-houdini
-#  version: vP3D
 engines.tk-houdini.location:
-  type: git_branch
+  type: app_store
   name: tk-houdini
-  path: https://github.com/BaratteG/tk-houdini.git
-  branch: master
-  version: 40979f1
+  version: v1.8.5
+#engines.tk-houdini.location:
+#  type: git_branch
+#  name: tk-houdini
+#  path: https://github.com/BaratteG/tk-houdini.git
+#  branch: master
+#  version: 40979f1
+
+engines.tk-maya.location:
+  type: app_store
+  name: tk-maya
+  version: v0.11.6
 
 #engines.tk-maya.location:
-#  type: app_store
+#  type: git_branch
 #  name: tk-maya
-#  version: v0.11.4
-engines.tk-maya.location:
-  type: git_branch
-  name: tk-maya
-  path: https://github.com/BaratteG/tk-maya.git
-  branch: master
-  version: 0a98913
+#  path: https://github.com/BaratteG/tk-maya.git
+#  branch: master
+#  version: 0a98913
 
 engines.tk-nuke.location:
   type: app_store
