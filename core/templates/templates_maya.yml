@@ -25,7 +25,7 @@ paths:
     maya_asset_render_assFiles:
         definition: '@maya_asset_render_directory/assFiles'
     maya_asset_render_path:
-        definition: '@maya_asset_render_directory/<RenderLayer>/{Step}_{Asset}[_{variant}]_<RenderLayer>.v{version}'    
+        definition: '@maya_asset_render_directory/[{variant}/]<RenderLayer>/{Step}_{Asset}[_{variant}]_<RenderLayer>.v{version}'    
 
     # ASSET PUBLISH TEMPLATES.
 
