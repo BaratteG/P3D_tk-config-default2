@@ -13,8 +13,12 @@ import inspect
 from tank_vendor import six
 
 from pipelineFramework.maya         import PublishTools
+from pipelineFramework.shotgrid     import Shotgrid
+from pipelineFramework.templates    import TemplateTools
 
-publihTools = PublishTools()
+publihTools     = PublishTools()
+sg              = Shotgrid()
+templateTools   = TemplateTools()
 
 # Inherit from {self}/publish_file.py 
 # Check config.env.includes.settings.tk-multi-publish2.yml
@@ -58,7 +62,17 @@ class MayaAssetScenePublishPlugin(HookBaseClass):
 
         # Add the publish path datas to the publish item.
         # That allow us to reuse the datas for the publish.
-        publihTools.addPublishDatasToPublishItem(self, item, self.propertiesPublishTemplate)
+        tagFields = {}
+        # Check if the current task as variant.
+        taskName        = sg.currentTask["name"]
+        taskVariant     = None
+        taskTemplateName, taskTemplate, taskTagsValues = templateTools.getTaskNamingTemplate(taskName)
+        if(taskTemplateName):
+            if("variant" in taskTagsValues):
+                tagFields["variant"] = taskTagsValues["variant"]
+
+        
+        publihTools.addPublishDatasToPublishItem(self, item, self.propertiesPublishTemplate, addFields=tagFields)
 
         # run the base class validation
         return super(MayaAssetScenePublishPlugin, self).validate(settings, item)
