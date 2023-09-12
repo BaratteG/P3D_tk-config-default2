@@ -16,8 +16,12 @@ import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-# Import the maya module of the P3D framework.
-P3Dfw = sgtk.platform.current_engine().frameworks["tk-framework-P3D"].import_module("maya")
+from pipelineFramework.shotgrid         import Shotgrid
+from pipelineFramework.maya.asset       import MayaAsset
+
+from pipelineFramework.maya.collectors  import MayaCollectorModeling
+from pipelineFramework.maya.collectors  import MayaCollectorRig
+
 
 class MayaSessionCollector(HookBaseClass):
     """
@@ -65,43 +69,52 @@ class MayaSessionCollector(HookBaseClass):
         :param parent_item: Root item instance
 
         """
-        # Get the current engine.
-        currentEngine = sgtk.platform.current_engine()
-        # Get the current context.
-        currentContext = currentEngine.context
-        # Get the context project.
-        ctxtProject = currentContext.project
-        # Get the context step.
-        ctxtStep = currentContext.step
-        # Get the context entity.
-        ctxtEntity = currentContext.entity
-        # Get the context task.
-        ctxtTask = currentContext.task
-        # Get the context user.
-        ctxtUser = currentContext.user
 
-        print(ctxtProject)
-        print(currentContext)
-        print(ctxtEntity)
+        # Get shotgrid api from pipelineFramework.
+        sg = Shotgrid()
 
-        if(ctxtEntity["type"] == "Asset"):
+        # Check the current entity type.
+        if(sg.currentEntity["type"] == "Asset"):
+            collector = None
             # Set the P3D publish pipeline.
-            if(ctxtStep["name"] == "Model" or
-                ctxtStep["name"] == "UV"):
-                # Collect the data for a Model Publish.
-                self.collect_for_model_publish(settings, parent_item)
+            if(sg.currentStep["name"] == "Model" or
+                sg.currentStep["name"] == "UV"):
+                collector = MayaCollectorModeling(self)
 
-            elif(ctxtStep["name"] == "Rig"):
-                self.collect_for_rig_publish(settings, parent_item)
+            elif(sg.currentStep["name"] == "Rig"):
+                # Collect the data for a Rig Publish.
+                collector = MayaCollectorRig(self)
 
-            elif(ctxtStep["name"] == "Shading"):
-                self.collect_for_shd_publish(settings, parent_item)
+            elif(sg.currentStep["name"] == "Shading"):
+                # Collect the data for the shading publish.
+                collector.collect_shading_asset(settings, parent_item)
 
-        elif(ctxtEntity["type"] == "Shot"):
-            if(ctxtStep["name"] == "Animation"):
-                self.collect_for_shot_animation_publish(settings, parent_item)
+            elif(sg.currentStep["name"] == "Set Dress Asset"):
+                # Collect the data for the set dress publish.
+                collector.collect_asset_sceneDescription(settings, parent_item)
+
+            collector.collect(settings, parent_item)
 
 
+        elif(sg.currentEntity["type"] == "Shot"):
+
+            if(sg.currentStep["name"] == "Animation"):
+                collector.collect_shot_animation_datas(settings, parent_item)
+                collector.collect_shot_sceneDescription(settings, parent_item)
+                collector.collect_shot_camera(settings, parent_item)
+
+            elif(sg.currentStep["name"] == "Layout"):
+                collector.collect_shot_sceneDescription(settings, parent_item)
+                collector.collect_shot_camera(settings, parent_item)
+
+            elif(sg.currentStep["name"] == "Set Dressing"):
+                collector.collect_shot_sceneDescription(settings, parent_item)
+                
+            elif(sg.currentStep["name"] == "Lighting"):
+                pass
+
+            elif(sg.currentStep["name"] == "Rendering"):
+                pass
         else:
 
             # create an item representing the current maya session
@@ -162,7 +175,7 @@ class MayaSessionCollector(HookBaseClass):
 
             # Create an item for each selected asset.
             for sel in mSelection:
-                asset = P3Dfw.MayaAsset(assetRoot=sel)
+                asset = MayaAsset(root=sel)
 
                 item        = parent_item.create_item("maya.shot.assetInstance.alembic", "Shot Asset Instance Alembic", asset.fullname)
                 abcIcon     = os.path.join(self.disk_location, os.pardir, "icons", "alembic.png")
@@ -302,7 +315,7 @@ class MayaSessionCollector(HookBaseClass):
 
         # Create the asset object an add it to the item properties.
         # That allow to share the MayaAsset Class with the publish plugin.
-        mayaAsset = P3Dfw.MayaAsset(assetRoot=assetRoot)
+        mayaAsset = MayaAsset(root=assetRoot)
         assetItem.properties["assetObject"] = mayaAsset
 
         # if a work template is defined, add it to the item properties so
@@ -369,7 +382,7 @@ class MayaSessionCollector(HookBaseClass):
 
         # Create the asset object an add it to the item properties.
         # That allow to share the MayaAsset Class with the publish plugin.
-        mayaAsset = P3Dfw.MayaAsset(assetRoot=assetRoot)
+        mayaAsset = MayaAsset(root=assetRoot)
         assetItem.properties["assetObject"] = mayaAsset
 
         # if a work template is defined, add it to the item properties so

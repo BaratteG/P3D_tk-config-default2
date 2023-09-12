@@ -23,6 +23,10 @@ includes:
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-substancepainter.yml
+- ./includes/settings/tk-substancedesigner.yml
+- ./includes/settings/tk-blender.yml
+- ./includes/settings/tk-harmony.yml
+
 ################################################################################
 # configuration for all engines to load in a project context
 
@@ -36,6 +40,10 @@ engines:
   tk-shell: "@settings.tk-shell.project"
   tk-shotgun: "@settings.tk-shotgun.project"
   tk-substancepainter: "@settings.tk-substancepainter.project"
+  tk-substancedesigner: "@settings.tk-substancedesigner.project"
+  tk-blender: "@settings.tk-blender.project"
+  tk-harmony: "@settings.tk-harmony.project"
+
 ################################################################################
 # reference all of the common frameworks
 

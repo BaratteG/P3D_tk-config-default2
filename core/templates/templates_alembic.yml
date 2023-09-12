@@ -1,0 +1,15 @@
+
+paths:
+
+    # ASSET PUBLISH TEMPLATES
+
+    asset_alembic_publish_cache:
+        definition: "@asset_publish_root/v{version}/{Step}_{Asset}[_{variant}][_{lod}].v{version}.abc"
+
+    # SHOT PUBLISH TEMPLATES
+
+    shot_asset_alembic_publish_cache:
+        definition: "@shot_publish_root/assets/v{version}/{Step}_{Shot}_{Asset}[_{variant}][_{lod}]_{instance}.v{version}.abc"
+
+    shot_camera_alembic_publish_cache:
+        definition: "@shot_publish_root/camera/v{version}/{Step}_{Shot}_{camera}[_{instance}].v{version}.abc"

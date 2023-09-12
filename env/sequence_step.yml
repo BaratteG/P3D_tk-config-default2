@@ -1,0 +1,6 @@
+
+includes:
+- ./includes/settings/tk-harmony.yml
+
+engines:
+  tk-harmony: "@settings.tk-harmony.sequence_step"

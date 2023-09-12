@@ -11,62 +11,60 @@ import inspect
 
 from tank_vendor import six
 
-# Import the maya module of the P3D framework.
-P3Dfw = sgtk.platform.current_engine().frameworks["tk-framework-P3D"].import_module("maya")
-publihTools = P3Dfw.PublishTools()
+from pipelineFramework.maya.hookPublishs  import HookPublishRig
+
+hooksPublish = HookPublishRig()
 
 # Inherit from {self}/publish_file.py 
 # Check config.env.includes.settings.tk-multi-publish2.yml
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class MayaAssetMaterialXLOPublishPlugin(HookBaseClass):
+class MayaAssetRigPROXYPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        return publihTools.hookPublishAcceptLOD(
+        return hooksPublish.acceptLOD(
             self,
             settings,
             item,
             self.publishTemplate,
-            self.propertiesPublishTemplate,
-            "LO"
+            self.propertiesPublishTemplate
         )
 
     def validate(self, settings, item):
 
-        publihTools.hookPublishValidate(
+        hooksPublish.validate(
             self,
             settings,
             item,
             self.propertiesPublishTemplate,
-            isChild=True,
-            addFields={"lod":"LO", "variant":"base"}
+            isChild=True
         )
 
         # run the base class validation
-        return super(MayaAssetMaterialXLOPublishPlugin, self).validate(settings, item)
+        return super(MayaAssetRigPROXYPublishPlugin, self).validate(settings, item)
+
 
     def publish(self, settings, item):
-        
-        publihTools.hookPublishMaterialXLODPublish(
+
+        hooksPublish.publishRigLOD(
             self,
             settings,
             item,
-            "LO",
             isChild=True
         )
 
         # let the base class register the publish
-        super(MayaAssetMaterialXLOPublishPlugin, self).publish(settings, item)
+        super(MayaAssetRigPROXYPublishPlugin, self).publish(settings, item)
 
     @property
     def publishTemplate(self):
-        return "Asset MaterialX LO Publish Template"
+        return "Asset Rig PROXY Publish Template"
 
     @property
     def propertiesPublishTemplate(self):
-        return "asset_materialX_lo_publish_template"
+        return "asset_rig_proxy_publish_template"
 
     @property
     def description(self):
@@ -78,7 +76,7 @@ class MayaAssetMaterialXLOPublishPlugin(HookBaseClass):
     @property
     def settings(self):
         # inherit the settings from the base publish plugin
-        base_settings = super(MayaAssetMaterialXLOPublishPlugin, self).settings or {}
+        base_settings = super(MayaAssetRigPROXYPublishPlugin, self).settings or {}
 
         # settings specific to this class
         maya_publish_settings = {
@@ -98,4 +96,4 @@ class MayaAssetMaterialXLOPublishPlugin(HookBaseClass):
 
     @property
     def item_filters(self):
-        return ["maya.asset.materialXLO"]
+        return ["maya.asset.rigPROXY"]

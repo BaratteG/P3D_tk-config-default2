@@ -16,44 +16,45 @@
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.6.4
+  version: v2.6.9
 
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
   version: v1.5.1
 
-# engines.tk-houdini.location:
-#  type: app_store
-#  name: tk-houdini
-#  version: vP3D
 engines.tk-houdini.location:
-  type: git_branch
+  type: app_store
   name: tk-houdini
-  path: https://github.com/BaratteG/tk-houdini.git
-  branch: master
-  version: 40979f1
+  version: v1.8.5
+#engines.tk-houdini.location:
+#  type: git_branch
+#  name: tk-houdini
+#  path: https://github.com/BaratteG/tk-houdini.git
+#  branch: master
+#  version: 40979f1
+
+engines.tk-maya.location:
+  type: app_store
+  name: tk-maya
+  version: v0.11.6
 
 #engines.tk-maya.location:
-#  type: app_store
+#  type: git_branch
 #  name: tk-maya
-#  version: v0.11.4
-engines.tk-maya.location:
-  type: git_branch
-  name: tk-maya
-  path: https://github.com/BaratteG/tk-maya.git
-  branch: master
-  version: 0a98913
+#  path: https://github.com/BaratteG/tk-maya.git
+#  branch: master
+#  version: 0a98913
 
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.14.4
+  version: v0.14.6
 
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.9.3
+  version: v1.9.5
 
 engines.tk-shell.location:
   type: app_store
@@ -67,5 +68,20 @@ engines.tk-shotgun.location:
   
 engines.tk-substancepainter.location:
   type: git
-  path: https://github.com/diegogarciahuerta/tk-substancepainter
-  version: v1.2.2
+  path: https://github.com/lola-post/tk-substancepainter
+  version: v1.2.2.4
+
+engines.tk-substancedesigner.location:
+  type: git
+  path: https://github.com/diegogarciahuerta/tk-substancedesigner
+  version: v1.0.0
+
+engines.tk-blender.location:
+  type: git
+  path: https://github.com/BaratteG/tk-blender
+  version: v1.1.2
+
+engines.tk-harmony.location:
+  type: git
+  path: https://github.com/mightyanimation/tk-harmony
+  version: v2.0.0-1

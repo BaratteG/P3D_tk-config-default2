@@ -11,9 +11,9 @@ import inspect
 
 from tank_vendor import six
 
-# Import the maya module of the P3D framework.
-P3Dfw = sgtk.platform.current_engine().frameworks["tk-framework-P3D"].import_module("maya")
-publihTools = P3Dfw.PublishTools()
+from pipelineFramework.maya.hookPublishs  import HookPublishRig
+
+hooksPublish = HookPublishRig()
 
 # Inherit from {self}/publish_file.py 
 # Check config.env.includes.settings.tk-multi-publish2.yml
@@ -24,24 +24,22 @@ class MayaAssetRigLOPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        return publihTools.hookPublishAcceptLOD(
+        return hooksPublish.acceptLOD(
             self,
             settings,
             item,
             self.publishTemplate,
-            self.propertiesPublishTemplate,
-            "LO"
+            self.propertiesPublishTemplate
         )
 
     def validate(self, settings, item):
 
-        publihTools.hookPublishValidate(
+        hooksPublish.validate(
             self,
             settings,
             item,
             self.propertiesPublishTemplate,
-            isChild=True,
-            addFields={"lod":"LO"}
+            isChild=True
         )
 
         # run the base class validation
@@ -50,11 +48,10 @@ class MayaAssetRigLOPublishPlugin(HookBaseClass):
 
     def publish(self, settings, item):
 
-        publihTools.hookPublishMayaSceneLODPublish(
+        hooksPublish.publishRigLOD(
             self,
             settings,
             item,
-            "LO",
             isChild=True
         )
 

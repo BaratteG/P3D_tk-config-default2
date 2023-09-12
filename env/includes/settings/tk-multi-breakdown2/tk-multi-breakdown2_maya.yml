@@ -1,0 +1,9 @@
+
+
+includes:
+- ../../app_locations.yml
+
+# Maya
+settings.tk-multi-breakdown2.maya:
+  hook_scene_operations: '{self}/tk-maya_scene_operations.py'
+  location: "@apps.tk-multi-breakdown2.location"

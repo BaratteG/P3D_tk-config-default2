@@ -1,0 +1,7 @@
+
+includes:
+- ../../app_locations.yml
+
+settings.tk-multi-setframerange.blender:
+  hook_frame_operation: "{engine}/tk-multi-setframerange/frame_operations_tk-blender.py"
+  location: "@apps.tk-multi-setframerange.location"

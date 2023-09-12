@@ -85,33 +85,7 @@ settings.tk-multi-shotgunpanel.houdini:
       filters: {}
   location: "@apps.tk-multi-shotgunpanel.location"
 
-# maya
-settings.tk-multi-shotgunpanel.maya:
-  action_mappings:
-    PublishedFile:
-    - actions: [reference, import]
-      filters: {published_file_type: Alembic Cache}
-    - actions: [texture_node, image_plane]
-      filters: {published_file_type: Image}
-    - actions: [reference, import]
-      filters: {published_file_type: Maya Scene}
-    - actions: [texture_node, image_plane]
-      filters: {published_file_type: Photoshop Image}
-    - actions: [texture_node, image_plane]
-      filters: {published_file_type: Rendered Image}
-    - actions: [texture_node, image_plane]
-      filters: {published_file_type: Texture}
-    - actions: [udim_texture_node]
-      filters: {published_file_type: UDIM Image}
-    - actions: [publish_clipboard]
-      filters: {}
-    Task:
-    - actions: [assign_task, task_to_ip]
-      filters: {}
-    Version:
-    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
-      filters: {}
-  location: "@apps.tk-multi-shotgunpanel.location"
+
 
 # nuke
 settings.tk-multi-shotgunpanel.nuke:
@@ -347,16 +321,3 @@ settings.tk-multi-shotgunpanel.vred:
   actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
 
-# substancepainter
-settings.tk-multi-shotgunpanel.substancepainter:
-  action_mappings:
-    PublishedFile:
-    - actions: [publish_clipboard]
-      filters: {}
-    Task:
-    - actions: [assign_task, task_to_ip]
-      filters: {}
-    Version:
-    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
-      filters: {}
-  location: "@apps.tk-multi-shotgunpanel.location"

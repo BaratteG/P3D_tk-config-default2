@@ -1,0 +1,10 @@
+
+paths:
+
+    # ASSET TEMPLATES
+    asset_sceneDescription_publish:
+        definition: "@asset_publish_root/v{version}/{Step}_{Asset}_sceneDescription.v{version}.json"
+
+    # SHOT TEMPLATES
+    shot_sceneDescription_publish:
+        definition: "@shot_publish_root/setDress/v{version}/{Step}_{Shot}_sceneDescription.v{version}.json"

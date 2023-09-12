@@ -93,10 +93,17 @@ class BeforeAppLaunch(tank.Hook):
         if(software_entity["code"] == "Maya"):
 
             # Add farmTools.
-            self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.4.0")
+            #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.7.0")
+            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\farmTools")
+            # Add Pipeline Framework.
+            #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\0.1.0")
+            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
 
             # Add Studio Library.
             self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\studiolibrary\\2.9.6.b3\\src")
+
+            # Add Rag doll.
+            self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\ragdoll\\2022.07.20")
 
             # Set up for version.
             if(version == "2022"):
@@ -110,6 +117,13 @@ class BeforeAppLaunch(tank.Hook):
                 self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\frankenstein\\0.8.1\\windows\\2023\\module")
                 # Add ngSkin Tools.
                 self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\ngskintools\\2.0.39\\ngskintools2\\2023\\module")
+                # Add aTools.
+                self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\aTools\\2.02\\module")
+
+            elif(version == "2024"):
+                # Add Frankenstein.
+                self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\frankenstein\\1.1.0\\windows\\2024_1\\module")
+
                 # Add aTools.
                 self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\aTools\\2.02\\module")
 
@@ -148,6 +162,8 @@ class BeforeAppLaunch(tank.Hook):
             if(projectName == "KML"):
                 self.addToEnvironmentEnd('NUKE_PATH', 'O:\\shows\\KML\\library\\compositing\\.nuke\\ProductionTools')
 
+        elif(software_entity['code'] == "Toon Boom Harmony"):
+            pass
         elif(software_entity["code"] == "Guerilla"):
             pass
         elif(software_entity["code"] == "Painter"):

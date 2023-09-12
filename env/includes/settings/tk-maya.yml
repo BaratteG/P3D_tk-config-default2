@@ -14,15 +14,20 @@
 includes:
 - ../app_locations.yml
 - ../engine_locations.yml
-- ./tk-multi-loader2.yml
-- ./tk-multi-publish2.yml
+#- ./tk-multi-loader2.yml
+#- ./tk-multi-publish2.yml
 - ./tk-multi-reviewsubmission.yml
 - ./tk-multi-screeningroom.yml
 - ./tk-multi-shotgunpanel.yml
-- ./tk-multi-snapshot.yml
+#- ./tk-multi-snapshot.yml
 - ./tk-multi-workfiles2.yml
-- ./tk-multi-breakdown2.yml
+#- ./tk-multi-breakdown2.yml
 - ./tk-multi-publish2/tk-multi-publish2_maya.yml
+- ./tk-multi-loader2/tk-multi-loader2_maya.yml
+- ./tk-multi-shotgunpanel/tk-multi-shotgunpanel_maya.yml
+- ./tk-multi-snapshot/tk-multi-snapshot_maya.yml
+- ./tk-multi-workfiles2/tk-multi-workfiles2_maya.yml
+- ./tk-multi-breakdown2/tk-multi-breakdown2_maya.yml
 
 ################################################################################
 
@@ -57,7 +62,7 @@ settings.tk-maya.asset_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  template_project: asset_work_area_maya
+  template_project: maya_asset_work_area
   location: "@engines.tk-maya.location"
 
 # project

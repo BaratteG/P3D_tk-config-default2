@@ -17,13 +17,13 @@
 includes:
 - ../app_locations.yml
 - ../engine_locations.yml
-- ./tk-multi-breakdown.yml
-- ./tk-multi-loader2.yml
-- ./tk-multi-publish2.yml
+- ./tk-multi-breakdown/tk-multi-breakdown_substancePainter.yml
+- ./tk-multi-loader2/tk-multi-loader2_substancePainter.yml
+- ./tk-multi-publish2/tk-multi-publish2_substancePainter.yml
 - ./tk-multi-screeningroom.yml
-- ./tk-multi-shotgunpanel.yml
-- ./tk-multi-snapshot.yml
-- ./tk-multi-workfiles2.yml
+- ./tk-multi-shotgunpanel/tk-multi-shotgunpanel_substancePainter.yml
+- ./tk-multi-snapshot/tk-multi-snapshot_substancePainter.yml
+- ./tk-multi-workfiles2/tk-multi-workfiles2_substancePainter.yml
 
 ################################################################################
 

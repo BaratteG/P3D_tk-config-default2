@@ -1,0 +1,18 @@
+
+
+includes:
+- ../../app_locations.yml
+
+# ---- Maya
+
+# asset step
+settings.tk-multi-snapshot.maya.asset_step:
+  template_snapshot: maya_asset_snapshot
+  template_work: maya_asset_work
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.maya.shot_step:
+  template_snapshot: maya_shot_snapshot
+  template_work: maya_shot_work
+  location: "@apps.tk-multi-snapshot.location"
