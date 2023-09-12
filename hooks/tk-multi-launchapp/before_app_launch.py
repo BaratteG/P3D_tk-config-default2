@@ -93,7 +93,11 @@ class BeforeAppLaunch(tank.Hook):
         if(software_entity["code"] == "Maya"):
 
             # Add farmTools.
-            self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.6.0")
+            #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.7.0")
+            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\farmTools")
+            # Add Pipeline Framework.
+            #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\0.1.0")
+            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
 
             # Add Studio Library.
             self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\studiolibrary\\2.9.6.b3\\src")
@@ -119,8 +123,7 @@ class BeforeAppLaunch(tank.Hook):
             elif(version == "2024"):
                 # Add Frankenstein.
                 self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\frankenstein\\1.1.0\\windows\\2024_1\\module")
-                # Add Pipeline Framework.
-                self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
+
                 # Add aTools.
                 self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\aTools\\2.02\\module")
 

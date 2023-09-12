@@ -16,8 +16,8 @@ import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-from pipelineFramework.shotgrid     import Shotgrid
-from pipelineFramework.maya         import MayaAsset
+from pipelineFramework.shotgrid         import Shotgrid
+from pipelineFramework.maya.asset       import MayaAsset
 
 from pipelineFramework.maya.collectors  import MayaCollectorModeling
 from pipelineFramework.maya.collectors  import MayaCollectorRig

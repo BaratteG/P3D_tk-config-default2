@@ -10,22 +10,26 @@ paths:
         definition: '@maya_asset_work_area/{Step}_{Asset}[_{variant}]_{name}.v{version}.{maya_extension}'
 
     # Define the asset previews file path.
+    maya_asset_preview_directory:
+        definition: '@asset_work_root/review'
     maya_asset_movie_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}[_{variant}].v{version}.{movie_extension}'
+        definition: '@maya_asset_preview_directory/v{version}/{Step}_{Asset}[_{variant}].v{version}.{movie_extension}'
     maya_asset_smoothShaded_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}[_{variant}]_smoothShaded.v{version}.{movie_extension}'
+        definition: '@maya_asset_preview_directory/v{version}/{Step}_{Asset}[_{variant}]_smoothShaded.v{version}.{movie_extension}'
     maya_asset_smoothShadedWire_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}[_{variant}]_smoothShadedWire.v{version}.{movie_extension}'
+        definition: '@maya_asset_preview_directory/v{version}/{Step}_{Asset}[_{variant}]_smoothShadedWire.v{version}.{movie_extension}'
     maya_asset_image_sequence_previews:
-        definition: '@asset_work_root/review/v{version}/{Step}_{Asset}[_{variant}].v{version}.{timestamp}.exr'
+        definition: '@maya_asset_preview_directory/v{version}/{Step}_{Asset}[_{variant}].v{version}.{timestamp}.exr'
 
     # Define the asset render file path.
     maya_asset_render_directory:
         definition: '@asset_work_root/render/v{version}'
-    maya_asset_render_assFiles:
+    maya_asset_render_assFiles_directory:
         definition: '@maya_asset_render_directory/assFiles'
     maya_asset_render_path:
-        definition: '@maya_asset_render_directory/[{variant}/]<RenderLayer>/{Step}_{Asset}[_{variant}]_<RenderLayer>.v{version}'    
+        definition: '@maya_asset_render_directory/[{variant}/]<RenderLayer>/{Step}_{Asset}[_{variant}]_<RenderLayer>.v{version}'
+    maya_asset_render_assFiles_path:
+        definition: '@maya_asset_render_assFiles_directory/[{variant}/]{renderLayer}/{sceneName}_{renderLayer}[.{timestamp}].ass'   
 
     # ASSET PUBLISH TEMPLATES.
 
@@ -40,10 +44,12 @@ paths:
         definition: '@shot_work_root/maya/{Step}_{Shot}_{name}.v{version}.{maya_extension}'
 
     # Define the shot previews file path.
+    maya_shot_preview_directory:
+        definition: '@shot_work_root/review'
     maya_shot_movie_previews:
-        definition: '@shot_work_root/review/v{version}/{Step}_{Shot}.v{version}.{movie_extension}'
+        definition: '@maya_shot_preview_directory/v{version}/{Step}_{Shot}.v{version}.{movie_extension}'
     maya_shot_image_sequence_previews:
-        definition: '@shot_work_root/review/v{version}/{Step}_{Shot}.v{version}.{timestamp}.exr'
+        definition: '@maya_shot_preview_directory/v{version}/{Step}_{Shot}.v{version}.{timestamp}.exr'
 
 
 

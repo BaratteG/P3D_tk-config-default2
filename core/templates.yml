@@ -154,6 +154,12 @@ keys:
             mb: Maya Binary (.mb)
         default: ma
         alias: extension
+    
+    renderLayer:
+        type: str
+
+    sceneName:
+        type: str
 
     # needed by the Alias import as reference functionality
     alias.extension:
