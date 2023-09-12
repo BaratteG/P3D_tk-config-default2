@@ -93,11 +93,11 @@ class BeforeAppLaunch(tank.Hook):
         if(software_entity["code"] == "Maya"):
 
             # Add farmTools.
-            self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.7.0")
-            #self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\farmTools")
+            #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.7.0")
+            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\farmTools")
             # Add Pipeline Framework.
-            self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\0.1.0")
-            #self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
+            #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\0.1.0")
+            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
 
             # Add Studio Library.
             self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\studiolibrary\\2.9.6.b3\\src")
