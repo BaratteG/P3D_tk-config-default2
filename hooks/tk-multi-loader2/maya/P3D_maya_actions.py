@@ -24,9 +24,7 @@ from tank_vendor import six
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-from pipelineFramework.maya         import LoadTools
-
-loadTools = LoadTools()
+from pipelineFramework.maya.loaders  import LoaderAsset
 
 
 class MayaActions(HookBaseClass):
@@ -265,18 +263,20 @@ class MayaActions(HookBaseClass):
         if not os.path.exists(path):
             raise Exception("File not found on disk - '%s'" % path)
 
-        loadTools.replaceSelectedAssetsReference(sg_publish_data.get("entity").get("name"), path)
+        loader = LoaderAsset()
+        loader.replaceSelectedAssetsReference(sg_publish_data.get("entity").get("name"), path)
 
     def _instanceReference(self, path, sg_publish_data):
 
         if not os.path.exists(path):
             raise Exception("File not found on disk - '%s'" % path)
-
-        loadTools.importAssetAsReference(sg_publish_data.get("entity").get("name"), path, sg_publish_data)
+        loader = LoaderAsset()
+        loader.loadAssetAsReference(sg_publish_data.get("entity").get("name"), path, sg_publish_data)
 
     def _importWithoutNamespace(self, path, sg_publish_data):
 
-        loadTools.importAsset(sg_publish_data.get("entity").get("name"), path, sg_publish_data)
+        loader = LoaderAsset()
+        loader.loadAsset(path, sg_publish_data)
 
     def _create_reference(self, path, sg_publish_data):
         """
