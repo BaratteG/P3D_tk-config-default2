@@ -121,5 +121,5 @@ settings.tk-maya.shot_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  template_project: shot_work_area_maya
+  template_project: maya_shot_work_area
   location: "@engines.tk-maya.location"

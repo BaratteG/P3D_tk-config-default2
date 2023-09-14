@@ -46,7 +46,7 @@ class MayaAssetMaterialXHIPublishPlugin(HookBaseClass):
 
     def publish(self, settings, item):
         
-        hooksPublish.materialXLODPublish(
+        hooksPublish.materialXPublish(
             self,
             settings,
             item,

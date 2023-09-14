@@ -24,7 +24,8 @@ from tank_vendor import six
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-from pipelineFramework.maya.loaders  import LoaderAsset
+from pipelineFramework.maya.loaders     import LoaderAsset
+from pipelineFramework.maya.loaders     import LoaderShading
 
 
 class MayaActions(HookBaseClass):
@@ -120,6 +121,26 @@ class MayaActions(HookBaseClass):
                 }
             )
 
+
+        if("importMaterialXAllStandIn" in actions):
+            action_instances.append(
+                {
+                    "name"          : "importMaterialXAllStandIn",
+                    "params"        : None,
+                    "caption"       : "Import Material X to All Asset Stand In.",
+                    "description"   : "This import the material X to all the asset stand in instance in the current scene."
+                }
+            )
+
+        if("importMaterialXSelectedStandIn" in actions):
+            action_instances.append(
+                {
+                    "name"          : "importMaterialXSelectedStandIn",
+                    "params"        : None,
+                    "caption"       : "Import Material X to Selected Asset Stand In",
+                    "description"   : "This import the material X to selected asset Stand In instance in the current scene."
+                }
+            )
 
 
         if "reference" in actions:
@@ -231,13 +252,35 @@ class MayaActions(HookBaseClass):
 
 
         if( name == "importWithoutNamespace"):
-            self._importWithoutNamespace(path, sg_publish_data)
+            self._importWithoutNamespace(
+                path, 
+                sg_publish_data)
 
         if( name == "instanceReference"):
-            self._instanceReference(path, sg_publish_data)
+            self._instanceReference(
+                path, 
+                sg_publish_data)
 
         if( name == "replaceSelectedReferencedInstance"):
-            self._replaceSelectedInstanceReference(path, sg_publish_data)
+            self._replaceSelectedInstanceReference(
+                path, 
+                sg_publish_data)
+
+        if( name == "instanceStandin"):
+            self._instanceStandIn(
+                path, 
+                sg_publish_data)
+        
+        if( name == "importMaterialXAllStandIn"):
+            self._importMaterialXAllStandIn(
+                path, 
+                sg_publish_data)
+
+        if( name == "importMaterialXSelectedStandIn"):
+            self._importMaterialXSelectedStandIn(
+                path, 
+                sg_publish_data)
+
 
 
         if name == "reference":
@@ -258,25 +301,70 @@ class MayaActions(HookBaseClass):
     ##############################################################################################################
     # helper methods which can be subclassed in custom hooks to fine tune the behaviour of things
 
-    def _replaceSelectedInstanceReference(self, path, sg_publish_data):
+    def _replaceSelectedInstanceReference(self, 
+            path:str, 
+            sg_publish_data:dict):
         
         if not os.path.exists(path):
             raise Exception("File not found on disk - '%s'" % path)
 
         loader = LoaderAsset()
-        loader.replaceSelectedAssetsReference(sg_publish_data.get("entity").get("name"), path)
+        loader.replaceSelectedAssetsReference(
+            sg_publish_data.get("entity").get("name"), 
+            path)
 
-    def _instanceReference(self, path, sg_publish_data):
+    def _instanceReference(self, 
+        path:str, 
+        sg_publish_data:dict):
 
         if not os.path.exists(path):
             raise Exception("File not found on disk - '%s'" % path)
         loader = LoaderAsset()
-        loader.loadAssetAsReference(sg_publish_data.get("entity").get("name"), path, sg_publish_data)
+        loader.loadAssetAsReference(
+            sg_publish_data.get("entity").get("name"), 
+            path, 
+            sg_publish_data)
 
-    def _importWithoutNamespace(self, path, sg_publish_data):
+    def _importWithoutNamespace(self, 
+            path:str, 
+            sg_publish_data:dict):
 
         loader = LoaderAsset()
-        loader.loadAsset(path, sg_publish_data)
+        loader.loadAsset(
+            path, 
+            sg_publish_data)
+
+    def _instanceStandIn(self, 
+            path:str, 
+            sg_publish_data:dict):
+        
+        loader = LoaderAsset()
+        loader.loadAssetAsStandin(
+            sg_publish_data.get("entity").get("name"),
+            path
+        )
+    
+    def _importMaterialXAllStandIn(self,
+            path:str,
+            sg_publish_data:dict):
+
+        loader = LoaderShading()
+        loader.loadAssetMaterialX(
+            sg_publish_data.get("entity").get("name"),
+            path,
+            selectedOnly=False
+        )
+
+    def _importMaterialXSelectedStandIn(self,
+            path:str,
+            sg_publish_data:dict):
+
+        loader = LoaderShading()
+        loader.loadAssetMaterialX(
+            sg_publish_data.get("entity").get("name"),
+            path,
+            selectedOnly=True
+        )       
 
     def _create_reference(self, path, sg_publish_data):
         """
