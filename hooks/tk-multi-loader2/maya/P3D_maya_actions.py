@@ -322,8 +322,8 @@ class MayaActions(HookBaseClass):
         loader = LoaderAsset()
         loader.loadAssetAsReference(
             sg_publish_data.get("entity").get("name"), 
-            path, 
-            sg_publish_data)
+            path,
+            sg_publish_data=sg_publish_data)
 
     def _importWithoutNamespace(self, 
             path:str, 
