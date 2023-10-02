@@ -4,4 +4,4 @@ type: "static"
 constrain_by_entity: "$step"
 
 constraints:
-- {"path": "short_name", "relation" : "is", "values" : ["Animation", "Set Dressing", "Layout"]}
+- {"path": "short_name", "relation" : "in", "values" : ["ANM", "SETD", "LAY"]}

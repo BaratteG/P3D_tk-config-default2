@@ -21,6 +21,7 @@ from pipelineFramework.maya.asset       import MayaAsset
 
 from pipelineFramework.maya.collectors  import MayaCollectorModeling
 from pipelineFramework.maya.collectors  import MayaCollectorRig
+from pipelineFramework.maya.collectors  import MayaCollectorShading
 
 
 class MayaSessionCollector(HookBaseClass):
@@ -87,7 +88,7 @@ class MayaSessionCollector(HookBaseClass):
 
             elif(sg.currentStep["name"] == "Shading"):
                 # Collect the data for the shading publish.
-                collector.collect_shading_asset(settings, parent_item)
+                collector = MayaCollectorShading(self)
 
             elif(sg.currentStep["name"] == "Set Dress Asset"):
                 # Collect the data for the set dress publish.
