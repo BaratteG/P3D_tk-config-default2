@@ -17,7 +17,9 @@ import sgtk
 HookBaseClass = sgtk.get_hook_baseclass()
 
 from pipelineFramework.shotgrid         import Shotgrid
-from pipelineFramework.maya.asset       import MayaAsset
+from pipelineFramework.shotgrid         import SGAsset
+from pipelineFramework.shotgrid         import SGShot
+from pipelineFramework.maya.asset       import MAsset
 
 from pipelineFramework.maya.collectors  import MayaCollectorModeling
 from pipelineFramework.maya.collectors  import MayaCollectorRig
@@ -74,12 +76,15 @@ class MayaSessionCollector(HookBaseClass):
         # Get shotgrid api from pipelineFramework.
         sg = Shotgrid()
 
+        currentEntity = sg.currentEntity
+
         # Check the current entity type.
-        if(sg.currentEntity["type"] == "Asset"):
+        if(isinstance(currentEntity, SGAsset)):
             collector = None
             # Set the P3D publish pipeline.
             if(sg.currentStep["name"] == "Model" or
                 sg.currentStep["name"] == "UV"):
+                print("Collect data for Modeling or UV publish")
                 collector = MayaCollectorModeling(self)
 
             elif(sg.currentStep["name"] == "Rig"):

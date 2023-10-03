@@ -64,12 +64,17 @@ class MayaAssetScenePublishPlugin(HookBaseClass):
         # That allow us to reuse the datas for the publish.
         tagFields = {}
         # Check if the current task as variant.
-        taskName        = sg.currentTask["name"]
-        taskVariant     = None
-        taskTemplateName, taskTemplate, taskTagsValues = templateTools.getTaskNamingTemplate(taskName)
-        if(taskTemplateName):
-            if("variant" in taskTagsValues):
-                tagFields["variant"] = taskTagsValues["variant"]
+        task            = sg.currentTask
+        taskFullname    = task.fullname
+        taskName        = task.name
+        taskVariant     = task.variant
+        taskPart        = task.part
+
+        if(taskPart):
+            tagFields["part"]   = taskPart
+
+        if(taskVariant):
+            tagFields["variant"] = taskVariant
 
         
         publihTools.addPublishDatasToPublishItem(self, item, self.propertiesPublishTemplate, addFields=tagFields)

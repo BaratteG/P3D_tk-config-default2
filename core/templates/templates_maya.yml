@@ -33,9 +33,9 @@ paths:
 
     # ASSET PUBLISH TEMPLATES.
 
-    # Define the asset rig publish file path.
+    # Define the asset publish file path.
     maya_asset_publish:
-        definition: '@asset_publish_root/v{version}/{Step}_{Asset}[_{variant}][_{lod}].v{version}.{maya_extension}'
+        definition: '@asset_publish_root/v{version}/{Step}_{Asset}[_{part}][_{variant}][_{lod}].v{version}.{maya_extension}'
 
 
     # SHOT WORK TEMPLATES.

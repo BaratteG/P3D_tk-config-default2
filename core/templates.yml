@@ -69,6 +69,8 @@ keys:
         type: str
     variant:
         type: str
+    part:
+        type: str
     instance:
         type: str
     camera:

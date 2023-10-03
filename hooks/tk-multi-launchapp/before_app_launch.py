@@ -123,7 +123,8 @@ class BeforeAppLaunch(tank.Hook):
             elif(version == "2024"):
                 # Add Frankenstein.
                 self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\frankenstein\\1.1.0\\windows\\2024_1\\module")
-
+                # Add Tween Machine
+                self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\tweenMachine\\3.0.0 b1c\\module")
                 # Add aTools.
                 self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\aTools\\2.02\\module")
 
@@ -137,22 +138,7 @@ class BeforeAppLaunch(tank.Hook):
             if(version == "19.0.383"):
                 pass
             elif(version == "19.5.569"):
-                # Add the farm tools.
-                self.addToEnvironmentEnd('HOUDINI_OTLSCAN_PATH', 'Z:\\P3DTools\\productionPackages\\farmTools\\0.7.0\\farmTools\\dccs\\houdini\\hda')                
-                self.addToEnvironmentEnd('PYTHONPATH', 'Z:\\P3DTools\\productionPackages\\farmTools\\0.7.0')
-                self.addToEnvironmentBegin('HOUDINI_MENU_PATH', 'Z:\\P3DTools\\productionPackages\\farmTools\\0.7.0\\farmTools\\dccs\\houdini\\menus')
-        
-                # Add P3D HDA.
-                self.addToEnvironmentEnd('HOUDINI_OTLSCAN_PATH', 'Z:\\P3DTools\\productionPackages\\houdini\\otls')
-                self.addToEnvironmentEnd('HOUDINI_VEX_PATH', 'Z:\\P3DTools\\productionPackages\\houdini\\vex')
-
-                # Add P3D Hair Tools.
-                self.addToEnvironmentEnd('HOUDINI_OTLSCAN_PATH', 'Z:\\P3DTools\\productionPackages\\houdiniHairTools\\hda')
-                self.addToEnvironmentEnd('HOUDINI_VEX_PATH', 'Z:\\P3DTools\\productionPackages\\houdiniHairTools\\vex')
-
-                # Add Arnold render.
-                self.addToEnvironmentEnd('PATH', 'C:\\Program Files\\Autodesk\\Arnold\\htoa-6.2.1.1_rca64926_houdini-19.5.569\\scripts\\bin')
-                self.addToEnvironmentBegin('HOUDINI_PATH', 'C:\\Program Files\\Autodesk\\Arnold\\htoa-6.2.1.1_rca64926_houdini-19.5.569')
+                self.addToEnvironmentBegin("HOUDINI_PACKAGE_DIR", "Z:\\P3DTools\\productionPackages\\houdiniPackages")
         
         elif(software_entity["code"] == "Nuke"):
             self.addToEnvironmentBegin('NUKE_PATH', 'Z:\\P3DTools\\productionPackages\\nukeGizmos')
