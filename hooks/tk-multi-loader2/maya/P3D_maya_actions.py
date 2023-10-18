@@ -109,6 +109,16 @@ class MayaActions(HookBaseClass):
                     "caption"       : "Import without Namespace",
                     "description"   : "This will add the asset to the scence."
                 }
+            )
+
+        if("importAndMergePartVariant" in actions):
+            action_instances.append(
+                {
+                    "name"          : "importAndMergePartVariant",
+                    "params"        : None,
+                    "caption"       : "Import and Merge Part Variant",
+                    "description"   : "Import the asset and merge part and variant to the selected asset."
+                }
             )       
 
         if("instanceStandin" in actions):
@@ -260,6 +270,12 @@ class MayaActions(HookBaseClass):
             self._instanceReference(
                 path, 
                 sg_publish_data)
+            
+        if( name == "importAndMergePartVariant"):
+            self._importAndMergePartVariant(
+                path,
+                sg_publish_data
+            )
 
         if( name == "replaceSelectedReferencedInstance"):
             self._replaceSelectedInstanceReference(
@@ -333,6 +349,16 @@ class MayaActions(HookBaseClass):
         loader.loadAsset(
             path, 
             sg_publish_data)
+
+    def _importAndMergePartVariant(self,
+            path:str,
+            sg_publish_data:dict):
+    
+        loader = LoaderAsset()
+        loader.loadAndMergeAsset(
+            path,
+            sg_publish_data
+        )
 
     def _instanceStandIn(self, 
             path:str, 

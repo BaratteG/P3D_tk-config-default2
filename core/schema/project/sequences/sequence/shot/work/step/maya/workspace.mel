@@ -1,7 +1,7 @@
 //Maya 2011 x64 Project Definition
 
 workspace -fr "offlineEdit" "scenes/edits";
-workspace -fr "scene" "scenes";
+workspace -fr "scene" "";
 workspace -fr "IGES" "data";
 workspace -fr "DXFexport" "data";
 workspace -fr "OBJexport" "data";
@@ -18,10 +18,10 @@ workspace -fr "sourceImages" "sourceimages";
 workspace -fr "animImport" "data";
 workspace -fr "movie" "data";
 workspace -fr "iprImages" "renderData/iprImages";
-workspace -fr "mayaAscii" "scenes";
+workspace -fr "mayaAscii" "";
 workspace -fr "textures" "textures";
 workspace -fr "aliasWire" "data";
-workspace -fr "mayaBinary" "scenes";
+workspace -fr "mayaBinary" "";
 workspace -fr "move" "data";
 workspace -fr "renderScenes" "renderScenes";
 workspace -fr "images" "images";

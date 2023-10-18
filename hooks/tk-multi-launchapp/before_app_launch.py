@@ -138,8 +138,8 @@ class BeforeAppLaunch(tank.Hook):
             if(version == "19.0.383"):
                 pass
             elif(version == "19.5.569"):
-                self.addToEnvironmentBegin("HOUDINI_PACKAGE_DIR", "Z:\\P3DTools\\productionPackages\\houdiniPackages")
-        
+                self.addToEnvironmentBegin("HOUDINI_PACKAGE_DIR", "Y:\\shows\\DEVCONFIG\\td\\packages")
+    
         elif(software_entity["code"] == "Nuke"):
             self.addToEnvironmentBegin('NUKE_PATH', 'Z:\\P3DTools\\productionPackages\\nukeGizmos')
             self.addToEnvironmentBegin('PYTHONPATH', 'Z:\\P3DTools\\productionPackages\\farmTools\\0.4.0')

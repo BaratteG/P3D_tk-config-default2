@@ -4,7 +4,7 @@ paths:
     # ASSET PUBLISH TEMPLATES
 
     asset_alembic_publish_cache:
-        definition: "@asset_publish_root/v{version}/{Step}_{Asset}[_{part}][_{variant}][_{lod}].v{version}.abc"
+        definition: "@asset_publish_root/v{version}/{Step}_{Asset}[_p{part}][_v{variant}][_s{subVariant}][_{lod}].v{version}.abc"
 
     # SHOT PUBLISH TEMPLATES
 

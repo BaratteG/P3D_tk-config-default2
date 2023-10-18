@@ -52,10 +52,10 @@ class MayaAssetScenePublishPlugin(HookBaseClass):
         self.logger.info("Asset Scene Publish | validate")
 
         # We use the MayaAsset class stored in the item to check if the current asset is a valid asset.
-        mayaAsset = item.properties.get("assetObject")
+        mAsset = item.properties.get("asset")
 
         # Check if the asset root is a valid asset.
-        if not (mayaAsset.isValid()):
+        if not (mAsset.isValid()):
             error_msg = "The asset %s is not a valid. Please check the asset group structure."
             self.logger.error(error_msg, extra=_get_save_as_action)
             raise Exception(error_msg)
@@ -64,9 +64,7 @@ class MayaAssetScenePublishPlugin(HookBaseClass):
         # That allow us to reuse the datas for the publish.
         tagFields = {}
         # Check if the current task as variant.
-        task            = sg.currentTask
-        taskFullname    = task.fullname
-        taskName        = task.name
+        task            = item.properties.get("task")
         taskVariant     = task.variant
         taskPart        = task.part
 
@@ -90,7 +88,7 @@ class MayaAssetScenePublishPlugin(HookBaseClass):
         publisher = self.parent
 
         # Get the item asset object.
-        mayaObject = item.properties["assetObject"]
+        mayaObject = item.properties["asset"]
 
         # get the path to create and publish
         publish_path = item.properties["path"]
