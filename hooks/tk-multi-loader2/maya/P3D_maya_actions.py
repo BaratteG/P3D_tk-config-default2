@@ -327,7 +327,8 @@ class MayaActions(HookBaseClass):
         loader = LoaderAsset()
         loader.replaceSelectedAssetsReference(
             sg_publish_data.get("entity").get("name"), 
-            path)
+            path,
+            sg_publish_data=sg_publish_data)
 
     def _instanceReference(self, 
         path:str, 
