@@ -94,6 +94,11 @@ settings.tk-multi-publish2.maya.shot_step:
   - name: Publish Shot AssetInstance Alembic
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_shot_assetInstance_alembic.py"
     settings:
-        Shot AssetInstance Alembic Publish Template: shot_alembic_publish
+        Shot AssetInstance Alembic Publish Template: shot_asset_alembic_publish_cache
+  - name: Publish Shot Camera Alembic
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_shot_camera_alembic.py"
+    settings:
+        Shot AssetInstance Alembic Publish Template: shot_camera_alembic_publish_cache
+
 
   location: "@apps.tk-multi-publish2.location"

@@ -19,7 +19,7 @@ hooksPublish = HookPublishAlembic()
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class MayaShotAssetInstanceAlembicPublishPlugin(HookBaseClass):
+class MayaShotCameraAlembicPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
@@ -42,7 +42,7 @@ class MayaShotAssetInstanceAlembicPublishPlugin(HookBaseClass):
         )
 
         # run the base class validation
-        return super(MayaShotAssetInstanceAlembicPublishPlugin, self).validate(settings, item)
+        return super(MayaShotCameraAlembicPublishPlugin, self).validate(settings, item)
 
 
     def publish(self, settings, item):
@@ -56,15 +56,15 @@ class MayaShotAssetInstanceAlembicPublishPlugin(HookBaseClass):
         )
 
         # let the base class register the publish
-        super(MayaShotAssetInstanceAlembicPublishPlugin, self).publish(settings, item)
+        super(MayaShotCameraAlembicPublishPlugin, self).publish(settings, item)
 
     @property
     def publishTemplate(self):
-        return "Shot AssetInstance Alembic Publish Template"
+        return "Shot Camera Alembic Publish Template"
 
     @property
     def propertiesPublishTemplate(self):
-        return "shot_assetInstance_alembic_publish_template"
+        return "shot_camera_alembic_publish_template"
 
     @property
     def description(self):
@@ -76,7 +76,7 @@ class MayaShotAssetInstanceAlembicPublishPlugin(HookBaseClass):
     @property
     def settings(self):
         # inherit the settings from the base publish plugin
-        base_settings = super(MayaShotAssetInstanceAlembicPublishPlugin, self).settings or {}
+        base_settings = super(MayaShotCameraAlembicPublishPlugin, self).settings or {}
 
         # settings specific to this class
         maya_publish_settings = {
@@ -96,4 +96,4 @@ class MayaShotAssetInstanceAlembicPublishPlugin(HookBaseClass):
 
     @property
     def item_filters(self):
-        return ["maya.shot.assetInstance.alembic"]
+        return ["maya.shot.camera.alembic"]

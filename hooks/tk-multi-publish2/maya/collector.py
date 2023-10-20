@@ -24,6 +24,7 @@ from pipelineFramework.maya.asset       import MAsset
 from pipelineFramework.maya.collectors  import MayaCollectorModeling
 from pipelineFramework.maya.collectors  import MayaCollectorRig
 from pipelineFramework.maya.collectors  import MayaCollectorShading
+from pipelineFramework.maya.collectors  import MayaCollectorAnimation
 
 
 class MayaSessionCollector(HookBaseClass):
@@ -102,12 +103,10 @@ class MayaSessionCollector(HookBaseClass):
             collector.collect(settings, parent_item)
 
 
-        elif(sg.currentEntity["type"] == "Shot"):
-
+        elif(isinstance(currentEntity, SGShot)):
+            collector = None
             if(sg.currentStep["name"] == "Animation"):
-                collector.collect_shot_animation_datas(settings, parent_item)
-                collector.collect_shot_sceneDescription(settings, parent_item)
-                collector.collect_shot_camera(settings, parent_item)
+                collector = MayaCollectorAnimation(self)
 
             elif(sg.currentStep["name"] == "Layout"):
                 collector.collect_shot_sceneDescription(settings, parent_item)
@@ -121,6 +120,9 @@ class MayaSessionCollector(HookBaseClass):
 
             elif(sg.currentStep["name"] == "Rendering"):
                 pass
+
+            collector.collect(settings, parent_item)
+
         else:
 
             # create an item representing the current maya session
