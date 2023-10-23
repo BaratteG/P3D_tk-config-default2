@@ -11,8 +11,11 @@ import inspect
 
 from tank_vendor import six
 
-from pipelineFramework.maya.hookPublishs        import HookPublishMaterialX
-hooksPublish = HookPublishMaterialX()
+
+from pipelineFramework.maya.shotgrid.publishPlugins.accepts     import Accept
+from pipelineFramework.maya.shotgrid.publishPlugins.validates   import Validate
+from pipelineFramework.maya.shotgrid.publishPlugins.publishes   import PublishMaterialX
+
 
 # Inherit from {self}/publish_file.py 
 # Check config.env.includes.settings.tk-multi-publish2.yml
@@ -23,22 +26,20 @@ class MayaAssetMaterialXHIPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        return hooksPublish.acceptLOD(
-            self,
+        acceptor = Accept(hookClass=self)
+        return acceptor.accept(
             settings,
             item,
             self.publishTemplate,
-            self.propertiesPublishTemplate,
+            self.propertiesPublishTemplate
         )
 
     def validate(self, settings, item):
 
-        hooksPublish.validate(
-            self,
-            settings,
+        validator = Validate(hookClass=self)
+        validator.validate(
             item,
-            self.propertiesPublishTemplate,
-            isChild=True
+            self.propertiesPublishTemplate    
         )
 
         # run the base class validation
@@ -46,9 +47,8 @@ class MayaAssetMaterialXHIPublishPlugin(HookBaseClass):
 
     def publish(self, settings, item):
         
-        hooksPublish.materialXPublish(
-            self,
-            settings,
+        publishator = PublishMaterialX(hookClass=self)
+        publishator.publish(
             item,
             isChild=True
         )

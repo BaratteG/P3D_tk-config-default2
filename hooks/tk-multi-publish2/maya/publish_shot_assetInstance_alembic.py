@@ -11,8 +11,9 @@ import inspect
 
 from tank_vendor import six
 
-from pipelineFramework.maya.hookPublishs    import HookPublishAlembic
-hooksPublish = HookPublishAlembic()
+from pipelineFramework.maya.shotgrid.publishPlugins.accepts        import AcceptAssetLOD
+from pipelineFramework.maya.shotgrid.publishPlugins.validates      import ValidateAssetLOD
+from pipelineFramework.maya.shotgrid.publishPlugins.publishes      import PublishAlembic
 
 # Inherit from {self}/publish_file.py 
 # Check config.env.includes.settings.tk-multi-publish2.yml
@@ -23,22 +24,21 @@ class MayaShotAssetInstanceAlembicPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        return hooksPublish.accept(
-            self,
+        acceptor = AcceptAssetLOD(hookClass=self)
+        return acceptor.accept(
             settings,
             item,
             self.publishTemplate,
             self.propertiesPublishTemplate
         )
 
+
     def validate(self, settings, item):
 
-        hooksPublish.validate(
-            self,
-            settings,
+        validator = ValidateAssetLOD(hookClass=self)
+        validator.validate(
             item,
-            self.propertiesPublishTemplate,
-            isChild=True
+            self.propertiesPublishTemplate
         )
 
         # run the base class validation
@@ -47,10 +47,8 @@ class MayaShotAssetInstanceAlembicPublishPlugin(HookBaseClass):
 
     def publish(self, settings, item):
 
-
-        hooksPublish.publishAlembicLOD(
-            self,
-            settings,
+        publishator = PublishAlembic(hookClass=self)
+        publishator.publish(
             item,
             isChild=True
         )

@@ -24,8 +24,8 @@ from tank_vendor import six
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-from pipelineFramework.maya.loaders     import LoaderAsset
-from pipelineFramework.maya.loaders     import LoaderShading
+from pipelineFramework.maya.shotgrid.loaders     import LoaderAsset
+from pipelineFramework.maya.shotgrid.loaders     import LoaderShading
 
 
 class MayaActions(HookBaseClass):

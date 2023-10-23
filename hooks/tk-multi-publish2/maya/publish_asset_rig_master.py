@@ -11,9 +11,9 @@ import inspect
 
 from tank_vendor import six
 
-from pipelineFramework.maya.hookPublishs    import HookPublishScene
-
-hooksPublish = HookPublishScene()
+from pipelineFramework.maya.shotgrid.publishPlugins.accepts     import Accept
+from pipelineFramework.maya.shotgrid.publishPlugins.validates   import Validate
+from pipelineFramework.maya.shotgrid.publishPlugins.publishes   import PublishScene
 
 # Inherit from {self}/publish_file.py 
 # Check config.env.includes.settings.tk-multi-publish2.yml
@@ -24,8 +24,8 @@ class MayaAssetRigMasterPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        return hooksPublish.accept(
-            self,
+        acceptor = Accept(hookClass=self)
+        return acceptor.accept(
             settings,
             item,
             self.publishTemplate,
@@ -34,12 +34,10 @@ class MayaAssetRigMasterPublishPlugin(HookBaseClass):
 
     def validate(self, settings, item):
 
-        hooksPublish.validate(
-            self,
-            settings,
+        validator = Validate(hookClass=self)
+        validator.validate(
             item,
-            self.propertiesPublishTemplate
-        )
+            self.propertiesPublishTemplate)
 
         # run the base class validation
         return super(MayaAssetRigMasterPublishPlugin, self).validate(settings, item)
@@ -47,11 +45,8 @@ class MayaAssetRigMasterPublishPlugin(HookBaseClass):
 
     def publish(self, settings, item):
 
-        hooksPublish.publishScene(
-            self,
-            settings,
-            item
-        )
+        publishator = PublishScene(hookClass=self)
+        publishator.publish(item)
 
         # let the base class register the publish
         super(MayaAssetRigMasterPublishPlugin, self).publish(settings, item)

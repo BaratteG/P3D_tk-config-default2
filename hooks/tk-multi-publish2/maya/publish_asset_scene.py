@@ -12,9 +12,9 @@ import inspect
 
 from tank_vendor import six
 
-from pipelineFramework.maya.publishLoad     import PublishTools
-from pipelineFramework.shotgrid             import Shotgrid
-from pipelineFramework.templates            import TemplateTools
+from pipelineFramework.maya.publishLoad             import PublishTools
+from pipelineFramework.shotgrid                     import Shotgrid
+from pipelineFramework.templates                    import TemplateTools
 
 publihTools     = PublishTools()
 sg              = Shotgrid()

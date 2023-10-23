@@ -26,26 +26,10 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_session_geometry.py"
     settings:
         Publish Template: asset_alembic_cache
-  - name: Publish Asset Alembic LO
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_alembic_lo.py"
+  - name: Publish Asset Alembic
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_alembic.py"
     settings:
-        Asset Alembic LO Publish Template: asset_alembic_publish_cache
-  - name: Publish Asset Alembic MI
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_alembic_mi.py"
-    settings:
-        Asset Alembic MI Publish Template: asset_alembic_publish_cache
-  - name: Publish Asset Alembic HI
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_alembic_hi.py"
-    settings:
-        Asset Alembic HI Publish Template: asset_alembic_publish_cache
-  - name: Publish Asset Alembic PROXY
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_alembic_proxy.py"
-    settings:
-        Asset Alembic PROXY Publish Template: asset_alembic_publish_cache
-  - name: Publish Asset Alembic Tech
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_alembic_technical.py"
-    settings:
-        Asset Alembic Tech Publish Template: asset_alembic_publish_cache
+        Asset Alembic Publish Template: asset_alembic_publish_cache
   - name: Publish Asset Scene
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_scene.py"
     settings:
@@ -54,22 +38,10 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_rig_master.py"
     settings:
         Asset Rig Master Publish Template: maya_asset_publish
-  - name: Publish Asset Rig LO
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_rig_lo.py"
+  - name: Publish Asset Rig
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_rig.py"
     settings:
-        Asset Rig LO Publish Template: maya_asset_publish
-  - name: Publish Asset Rig MI
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_rig_mi.py"
-    settings:
-        Asset Rig MI Publish Template: maya_asset_publish
-  - name: Publish Asset Rig HI
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_rig_hi.py"
-    settings:
-        Asset Rig HI Publish Template: maya_asset_publish
-  - name: Publish Asset Rig PROXY
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_rig_proxy.py"
-    settings:
-        Asset Rig PROXY Publish Template: maya_asset_publish
+        Asset Rig Publish Template: maya_asset_publish
   - name: Publish Asset MaterialX
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_asset_materialX.py"
     settings:

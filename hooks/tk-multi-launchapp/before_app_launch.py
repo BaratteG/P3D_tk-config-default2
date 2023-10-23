@@ -87,17 +87,22 @@ class BeforeAppLaunch(tank.Hook):
         projectName     = multi_launchapp.context.project["name"]
 
         # Set up the OCIO config file.
-        os.environ["OCIO"] = "Z:\\OpenColorIO-Configs\\aces_1.2\\config.ocio"
+        os.environ["OCIO"] = "C:/Users/guill/Documents/DEV/OpenColorIO-Config-ACES/build/config/aces/cg/cg-config-v2.0.0_aces-v1.3_ocio-v2.1.ocio"
 
         # Set up the environment variable for maya.
         if(software_entity["code"] == "Maya"):
 
             # Add farmTools.
             #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.7.0")
-            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\farmTools")
+            #self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\farmTools")
+            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guill\\Documents\\DEV\\farmTools")
+
             # Add Pipeline Framework.
             #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\0.1.0")
-            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
+            
+            #self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
+            #self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
+            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guill\\Documents\\DEV\\PipelineFramework")
 
             # Add Studio Library.
             self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\studiolibrary\\2.9.6.b3\\src")

@@ -16,15 +16,15 @@ import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-from pipelineFramework.shotgrid         import Shotgrid
-from pipelineFramework.shotgrid         import SGAsset
-from pipelineFramework.shotgrid         import SGShot
-from pipelineFramework.maya.asset       import MAsset
+from pipelineFramework.shotgrid                     import Shotgrid
+from pipelineFramework.shotgrid                     import SGAsset
+from pipelineFramework.shotgrid                     import SGShot
+from pipelineFramework.maya.asset                   import MAsset
 
-from pipelineFramework.maya.collectors  import MayaCollectorModeling
-from pipelineFramework.maya.collectors  import MayaCollectorRig
-from pipelineFramework.maya.collectors  import MayaCollectorShading
-from pipelineFramework.maya.collectors  import MayaCollectorAnimation
+from pipelineFramework.maya.shotgrid.collectors     import MayaCollectorModeling
+from pipelineFramework.maya.shotgrid.collectors     import MayaCollectorRig
+from pipelineFramework.maya.shotgrid.collectors     import MayaCollectorShading
+from pipelineFramework.maya.shotgrid.collectors     import MayaCollectorAnimation
 
 
 class MayaSessionCollector(HookBaseClass):

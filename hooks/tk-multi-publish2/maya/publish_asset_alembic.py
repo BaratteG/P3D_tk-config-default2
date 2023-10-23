@@ -6,17 +6,18 @@ import sgtk
 
 from tank_vendor import six
 
-from pipelineFramework.maya.hookPublishs    import HookPublishAlembic
-hooksPublish = HookPublishAlembic()
+from pipelineFramework.maya.shotgrid.publishPlugins.accepts        import AcceptAssetLOD
+from pipelineFramework.maya.shotgrid.publishPlugins.validates      import ValidateAssetLOD
+from pipelineFramework.maya.shotgrid.publishPlugins.publishes      import PublishAlembic
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-class MayaAssetAlembicLOPublishPlugin(HookBaseClass):
+class MayaAssetAlembicPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
-
-        return hooksPublish.acceptLOD(
-            self,
+        
+        acceptor = AcceptAssetLOD(hookClass=self)
+        return acceptor.accept(
             settings,
             item,
             self.publishTemplate,
@@ -25,36 +26,34 @@ class MayaAssetAlembicLOPublishPlugin(HookBaseClass):
 
     def validate(self, settings, item):
 
-        hooksPublish.validate(
-            self,
-            settings,
+        validator = ValidateAssetLOD(hookClass=self)
+        validator.validate(
             item,
             self.propertiesPublishTemplate,
             isChild=True
         )
 
         # run the base class validation
-        return super(MayaAssetAlembicLOPublishPlugin, self).validate(settings, item)
+        return super(MayaAssetAlembicPublishPlugin, self).validate(settings, item)
 
     def publish(self, settings, item):
 
-        hooksPublish.publishAlembicLOD(
-            self,
-            settings,
+        publishator = PublishAlembic(hookClass=self)
+        publishator.publish(
             item,
             isChild=True
         )
 
         # let the base class register the publish
-        super(MayaAssetAlembicLOPublishPlugin, self).publish(settings, item)
+        super(MayaAssetAlembicPublishPlugin, self).publish(settings, item)
 
     @property
     def publishTemplate(self):
-        return "Asset Alembic LO Publish Template"
+        return "Asset Alembic Publish Template"
 
     @property
     def propertiesPublishTemplate(self):
-        return "asset_alembic_lo_publish_template"
+        return "asset_alembic_publish_template"
 
     @property
     def description(self):
@@ -66,7 +65,7 @@ class MayaAssetAlembicLOPublishPlugin(HookBaseClass):
     @property
     def settings(self):
         # inherit the settings from the base publish plugin
-        base_settings = super(MayaAssetAlembicLOPublishPlugin, self).settings or {}
+        base_settings = super(MayaAssetAlembicPublishPlugin, self).settings or {}
 
         # settings specific to this class
         maya_publish_settings = {
@@ -86,7 +85,7 @@ class MayaAssetAlembicLOPublishPlugin(HookBaseClass):
 
     @property
     def item_filters(self):
-        return ["maya.asset.alembicLO"]
+        return ["maya.asset.alembic"]
 
 def _session_path():
     """
