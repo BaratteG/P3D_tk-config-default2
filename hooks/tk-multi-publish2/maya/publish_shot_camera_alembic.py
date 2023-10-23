@@ -11,9 +11,9 @@ import inspect
 
 from tank_vendor import six
 
-from pipelineFramework.maya.shotgrid.publishPlugins.accepts        import AcceptAssetLOD
-from pipelineFramework.maya.shotgrid.publishPlugins.validates      import ValidateAssetLOD
-from pipelineFramework.maya.shotgrid.publishPlugins.publishes      import PublishAlembic
+from pipelineFramework.maya.shotgrid.publishPlugins.accepts        import Accept
+from pipelineFramework.maya.shotgrid.publishPlugins.validates      import ValidateCamera
+from pipelineFramework.maya.shotgrid.publishPlugins.publishes      import PublishAlembicCamera
 
 # Inherit from {self}/publish_file.py 
 # Check config.env.includes.settings.tk-multi-publish2.yml
@@ -24,7 +24,7 @@ class MayaShotCameraAlembicPublishPlugin(HookBaseClass):
 
     def accept(self, settings, item):
 
-        acceptor = AcceptAssetLOD(hookClass=self)
+        acceptor = Accept(hookClass=self)
         return acceptor.accept(
             settings,
             item,
@@ -32,10 +32,9 @@ class MayaShotCameraAlembicPublishPlugin(HookBaseClass):
             self.propertiesPublishTemplate
         )
 
-
     def validate(self, settings, item):
 
-        validator = ValidateAssetLOD(hookClass=self)
+        validator = ValidateCamera(hookClass=self)
         validator.validate(
             item,
             self.propertiesPublishTemplate
@@ -47,11 +46,8 @@ class MayaShotCameraAlembicPublishPlugin(HookBaseClass):
 
     def publish(self, settings, item):
 
-        publishator = PublishAlembic(hookClass=self)
-        publishator.publish(
-            item,
-            isChild=True
-        )
+        publishator = PublishAlembicCamera(hookClass=self)
+        publishator.publish(item)
 
         # let the base class register the publish
         super(MayaShotCameraAlembicPublishPlugin, self).publish(settings, item)
