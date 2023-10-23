@@ -37,7 +37,8 @@ class MayaAssetRigMasterPublishPlugin(HookBaseClass):
         validator = Validate(hookClass=self)
         validator.validate(
             item,
-            self.propertiesPublishTemplate)
+            self.propertiesPublishTemplate    
+        )
 
         # run the base class validation
         return super(MayaAssetRigMasterPublishPlugin, self).validate(settings, item)
