@@ -13,7 +13,7 @@ from tank_vendor import six
 
 
 from pipelineFramework.maya.shotgrid.publishPlugins.accepts     import Accept
-from pipelineFramework.maya.shotgrid.publishPlugins.validates   import Validate
+from pipelineFramework.maya.shotgrid.publishPlugins.validates   import ValidateAssetShading
 from pipelineFramework.maya.shotgrid.publishPlugins.publishes   import PublishMaterialX
 
 
@@ -36,10 +36,11 @@ class MayaAssetMaterialXHIPublishPlugin(HookBaseClass):
 
     def validate(self, settings, item):
 
-        validator = Validate(hookClass=self)
+        validator = ValidateAssetShading(hookClass=self)
         validator.validate(
             item,
-            self.propertiesPublishTemplate    
+            self.propertiesPublishTemplate,
+            isChild=True  
         )
 
         # run the base class validation

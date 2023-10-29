@@ -94,3 +94,5 @@ paths:
 
 
 
+    maya_shot_snapshot:
+        definition: '@maya_shot_work_area/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'  

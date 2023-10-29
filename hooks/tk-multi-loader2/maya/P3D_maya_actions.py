@@ -24,8 +24,9 @@ from tank_vendor import six
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-from pipelineFramework.maya.shotgrid.loaders     import LoaderAsset
-from pipelineFramework.maya.shotgrid.loaders     import LoaderShading
+from pipelineFramework.maya.loaders         import LoaderAsset
+from pipelineFramework.maya.loaders         import LoaderShading
+from pipelineFramework.maya.loaders         import LoaderCamera
 
 
 class MayaActions(HookBaseClass):
@@ -131,6 +132,16 @@ class MayaActions(HookBaseClass):
                 }
             )
 
+        if("instanceStandinAnimated" in actions):
+            action_instances.append(
+                {
+                    "name"          : "instanceStandinAnimated",
+                    "params"        : None,
+                    "caption"       : "Create Instance Stand-in animated",
+                    "description"   : "This will add the asset to the scence as standin and name it with asset_instanceNumber."
+                }
+            )
+
 
         if("importMaterialXAllStandIn" in actions):
             action_instances.append(
@@ -152,6 +163,15 @@ class MayaActions(HookBaseClass):
                 }
             )
 
+        if("importCamera" in actions):
+            action_instances.append(
+                {
+                    "name"          : "importCamera",
+                    "params"        : None,
+                    "caption"       : "Import Alembic Camera",
+                    "description"   : "This import an Alembic Camera in the current scene."
+                }
+            )
 
         if "reference" in actions:
             action_instances.append(
@@ -287,6 +307,11 @@ class MayaActions(HookBaseClass):
                 path, 
                 sg_publish_data)
         
+        if( name == "instanceStandinAnimated"):
+            self._instanceStandInAnimated(
+                path, 
+                sg_publish_data)
+
         if( name == "importMaterialXAllStandIn"):
             self._importMaterialXAllStandIn(
                 path, 
@@ -297,7 +322,10 @@ class MayaActions(HookBaseClass):
                 path, 
                 sg_publish_data)
 
-
+        if( name == "importCamera"):
+            self._importCamera(
+                path, 
+                sg_publish_data)
 
         if name == "reference":
             self._create_reference(path, sg_publish_data)
@@ -330,6 +358,15 @@ class MayaActions(HookBaseClass):
             path,
             sg_publish_data=sg_publish_data)
 
+    def _importCamera(self,
+        path:str,
+        sg_publish_data:dict):
+
+        loader = LoaderCamera()
+        loader.loadCamera(
+            path, 
+            sg_publish_data)
+
     def _instanceReference(self, 
         path:str, 
         sg_publish_data:dict):
@@ -361,6 +398,17 @@ class MayaActions(HookBaseClass):
             sg_publish_data
         )
 
+    def _instanceStandInAnimated(self,
+            path:str,
+            sg_publish_data:dict):
+        loader = LoaderAsset()
+        loader.loadAssetAsStandin(
+            sg_publish_data.get("entity").get("name"),
+            path,
+            sg_publish_data,
+            isAnimated=True
+        )
+
     def _instanceStandIn(self, 
             path:str, 
             sg_publish_data:dict):
@@ -368,7 +416,8 @@ class MayaActions(HookBaseClass):
         loader = LoaderAsset()
         loader.loadAssetAsStandin(
             sg_publish_data.get("entity").get("name"),
-            path
+            path,
+            sg_publish_data
         )
     
     def _importMaterialXAllStandIn(self,
@@ -377,7 +426,6 @@ class MayaActions(HookBaseClass):
 
         loader = LoaderShading()
         loader.loadAssetMaterialX(
-            sg_publish_data.get("entity").get("name"),
             path,
             selectedOnly=False
         )
@@ -388,7 +436,6 @@ class MayaActions(HookBaseClass):
 
         loader = LoaderShading()
         loader.loadAssetMaterialX(
-            sg_publish_data.get("entity").get("name"),
             path,
             selectedOnly=True
         )       

@@ -67,12 +67,16 @@ class MayaAssetScenePublishPlugin(HookBaseClass):
         task            = item.properties.get("task")
         taskVariant     = task.variant
         taskPart        = task.part
+        taskSubVariant  = task.subVariant
 
         if(taskPart):
             tagFields["part"]   = taskPart
 
         if(taskVariant):
             tagFields["variant"] = taskVariant
+
+        if(taskSubVariant):
+            tagFields["subVariant"] = taskSubVariant
 
         
         publihTools.addPublishDatasToPublishItem(self, item, self.propertiesPublishTemplate, addFields=tagFields)

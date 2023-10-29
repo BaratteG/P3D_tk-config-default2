@@ -77,48 +77,51 @@ class MayaSessionCollector(HookBaseClass):
         # Get shotgrid api from pipelineFramework.
         sg = Shotgrid()
 
-        currentEntity = sg.currentEntity
+        entity = sg.contextEntity
+
+        print(entity)
 
         # Check the current entity type.
-        if(isinstance(currentEntity, SGAsset)):
+        if(isinstance(entity, SGAsset)):
             collector = None
             # Set the P3D publish pipeline.
-            if(sg.currentStep["name"] == "Model" or
-                sg.currentStep["name"] == "UV"):
+            if(sg.contextStep.name == "Model" or
+                sg.contextStep.name == "UV"):
                 print("Collect data for Modeling or UV publish")
                 collector = MayaCollectorModeling(self)
 
-            elif(sg.currentStep["name"] == "Rig"):
+            elif(sg.contextStep.name == "Rig"):
                 # Collect the data for a Rig Publish.
                 collector = MayaCollectorRig(self)
 
-            elif(sg.currentStep["name"] == "Shading"):
+            elif(sg.contextStep.name == "Shading"):
                 # Collect the data for the shading publish.
                 collector = MayaCollectorShading(self)
 
-            elif(sg.currentStep["name"] == "Set Dress Asset"):
+            elif(sg.contextStep.name == "Set Dress Asset"):
                 # Collect the data for the set dress publish.
                 collector.collect_asset_sceneDescription(settings, parent_item)
 
             collector.collect(settings, parent_item)
 
 
-        elif(isinstance(currentEntity, SGShot)):
+        elif(isinstance(entity, SGShot)):
             collector = None
-            if(sg.currentStep["name"] == "Animation"):
+            if(sg.contextStep.name == "Animation"):
+                print("Publish Animation")
                 collector = MayaCollectorAnimation(self)
 
-            elif(sg.currentStep["name"] == "Layout"):
+            elif(sg.contextStep.name == "Layout"):
                 collector.collect_shot_sceneDescription(settings, parent_item)
                 collector.collect_shot_camera(settings, parent_item)
 
-            elif(sg.currentStep["name"] == "Set Dressing"):
+            elif(sg.contextStep.name == "Set Dressing"):
                 collector.collect_shot_sceneDescription(settings, parent_item)
                 
-            elif(sg.currentStep["name"] == "Lighting"):
+            elif(sg.contextStep.name == "Lighting"):
                 pass
 
-            elif(sg.currentStep["name"] == "Rendering"):
+            elif(sg.contextStep.name == "Rendering"):
                 pass
 
             collector.collect(settings, parent_item)
