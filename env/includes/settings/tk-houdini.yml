@@ -22,6 +22,7 @@ includes:
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-snapshot.yml
 - ./tk-multi-workfiles2.yml
+- ./tk-multi-workfiles2/tk-multi-workfiles2_houdini.yml
 
 ################################################################################
 

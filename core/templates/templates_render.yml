@@ -3,16 +3,34 @@ paths:
 
     # ASSET TEMPLATES
 
-    asset_exrTurnTableAOVs_publish:
-        definition: "@asset_publish_root/turnTable/v{version}/{pass}/{aov}/{Step}_{Asset}_{pass}_{aov}.v{version}.exr"
+    asset_render_directory:
+        definition: '@asset_work_root/render/v{version}'
 
-    asset_exrTurnTable_publish:
-        definition: "@asset_publish_root/turnTable/v{version}/{pass}/{Step}_{Asset}_{pass}.v{version}.exr"
+    asset_render_path:
+        definition: '@asset_render_directory/[{variant}/]<RenderLayer>/{Step}_{Asset}[_p{part}][_v{variant}][_s{subVariant}][_{lod}]_<RenderLayer>.v{version}'
+
+    asset_render_exr_path:
+        definition: '@asset_render_directory/[{variant}/]{renderLayer}/{Step}_{Asset}[_p{part}][_v{variant}][_s{subVariant}][_{lod}]_{renderLayer}.v{version}[.{timestamp}].exr'
+
+    asset_render_assFiles_directory:
+        definition: '@asset_render_directory/assFiles'
+
+    asset_render_assFile_path:
+        definition: '@asset_render_assFiles_directory/[{variant}/]{renderLayer}/{sceneName}_{renderLayer}[.{timestamp}].ass'
 
     # SHOT TEMPLATES
 
-    shot_exrRenderAOVs_publish:
-        definition: "@shot_publish_root/v{version}/{pass}/{aov}/{Step}_{Shot}_{pass}_{aov}.v{version}.exr"
+    shot_render_directory:
+        definition: '@shot_work_root/render/v{version}'
 
-    shot_exrRender_publish:
-        definition: "@shot_publish_root/v{version}/{pass}/{Step}_{Shot}_{pass}.v{version}.exr"
+    shot_render_path:
+        definition: "@shot_render_directory/<RenderLayer>/{Step}_{Shot}_<RenderLayer>.v{version}"
+
+    shot_render_exr_path:
+        definition: "@shot_render_directory/{renderLayer}/{Step}_{Shot}_{renderLayer}.v{version}[.{timestamp}].exr"
+
+    shot_render_assFile_directory:
+        definition: "@shot_render_directory/assFiles"
+
+    shot_render_assFile_path:
+        definition: "@shot_render_assFile_directory/{renderLayer}/{sceneName}_{renderLayer}[.{timestamp}].ass"

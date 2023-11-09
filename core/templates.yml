@@ -222,8 +222,12 @@ paths:
     shot_publish_root:
         definition: "@shot_root/publish/{Step}"
 
+    
+
 
 includes:
+- ./templates/templates_previews.yml
+- ./templates/templates_render.yml
 - ./templates/templates_aftereffect.yml
 - ./templates/templates_alembic.yml
 - ./templates/templates_houdini.yml
@@ -231,7 +235,6 @@ includes:
 - ./templates/templates_maya.yml
 - ./templates/templates_nuke.yml
 - ./templates/templates_photoshop.yml
-- ./templates/templates_render.yml
 - ./templates/templates_sceneDescription.yml
 - ./templates/templates_substancePainter.yml
 - ./templates/templates_blender.yml

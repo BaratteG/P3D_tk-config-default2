@@ -1,0 +1,59 @@
+
+includes:
+- ../../app_locations.yml
+
+# ---- Houdini
+
+# asset_step
+settings.tk-multi-workfiles2.houdini.asset_step:
+  template_publish: houdini_asset_publish
+  template_publish_area: houdini_asset_publish_area
+  template_work: houdini_asset_work
+  template_work_area: houdini_asset_work_area
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  location: "@apps.tk-multi-workfiles2.location"
+
+# shot_step
+settings.tk-multi-workfiles2.houdini.shot_step:
+  template_publish: houdini_shot_publish
+  template_publish_area: houdini_shot_publish_area
+  template_work: houdini_shot_work
+  template_work_area: houdini_shot_work_area
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  location: '@apps.tk-multi-workfiles2.location'

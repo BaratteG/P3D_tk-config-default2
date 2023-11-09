@@ -87,28 +87,34 @@ class BeforeAppLaunch(tank.Hook):
         projectName     = multi_launchapp.context.project["name"]
 
         # Set up the OCIO config file.
-        os.environ["OCIO"] = "C:/Users/guill/Documents/DEV/OpenColorIO-Config-ACES/build/config/aces/cg/cg-config-v2.0.0_aces-v1.3_ocio-v2.1.ocio"
+        #os.environ["OCIO"] = "C:/Users/guill/Documents/DEV/OpenColorIO-Config-ACES/build/config/aces/cg/cg-config-v2.0.0_aces-v1.3_ocio-v2.1.ocio"
+        os.environ["OCIO"] = "Z:/OpenColorIO-Configs/aces_1.2/config.ocio"
+
+        devType = "DEV"
 
         # Set up the environment variable for maya.
         if(software_entity["code"] == "Maya"):
 
-            # Add farmTools.
-            #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.7.0")
-            #self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\farmTools")
-            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guill\\Documents\\DEV\\farmTools")
-
-            # Add Pipeline Framework.
-            #self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\0.1.0")
             
-            #self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
-            #self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
-            self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guill\\Documents\\DEV\\PipelineFramework")
+            if(devType is "LOCAL"):
+                self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\farmTools")
+                self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guillaume.baratte\\Documents\\DEV\\PipelineFramework")
+            elif(devType is "HOME"):
+                self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guill\\Documents\\DEV\\farmTools")
+                self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guill\\Documents\\DEV\\PipelineFramework")
+            elif(devType is "SERVER"):
+                self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.8.0")
+                self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\0.5.0")
+            elif(devType is "DEV"):
+                self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\dev")
+                self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\dev")
+
 
             # Add Studio Library.
             self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\studiolibrary\\2.9.6.b3\\src")
-
             # Add Rag doll.
             self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\ragdoll\\2022.07.20")
+
 
             # Set up for version.
             if(version == "2022"):
@@ -145,8 +151,11 @@ class BeforeAppLaunch(tank.Hook):
             if(version == "19.0.383"):
                 pass
             elif(version == "19.5.569"):
-                self.addToEnvironmentBegin("HOUDINI_PACKAGE_DIR", "Y:\\shows\\DEVCONFIG\\td\\packages")
-    
+                if(devType == "SERVER"):
+                    self.addToEnvironmentBegin("HOUDINI_PACKAGE_DIR", "Z:\\P3DTools\\productionPackages\\houdiniPackages")
+                elif(devType == "DEV"):
+                    self.addToEnvironmentBegin("HOUDINI_PACKAGE_DIR", "Z:\\P3DTools\\productionPackages\\houdiniPackages\\dev")
+
         elif(software_entity["code"] == "Nuke"):
             self.addToEnvironmentBegin('NUKE_PATH', 'Z:\\P3DTools\\productionPackages\\nukeGizmos')
             self.addToEnvironmentBegin('PYTHONPATH', 'Z:\\P3DTools\\productionPackages\\farmTools\\0.4.0')
