@@ -18,11 +18,6 @@ import inspect
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-print("MAYA SESSION")
-print(dir(HookBaseClass))
-print(HookBaseClass.__bases__)
-print(inspect.getsource(HookBaseClass.validate))
-
 class MayaSessionPublishPlugin(HookBaseClass):
     """
     Plugin for publishing an open maya session.

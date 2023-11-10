@@ -14,15 +14,15 @@ paths:
     asset_smoothShadedWire_previews:
         definition: '@asset_preview_directory/v{version}/{Step}_{Asset}[_p{part}][_v{variant}][_s{subVariant}][_{lod}]_smoothShadedWire.v{version}.{movie_extension}'
 
-    asset_image_sequence_previews:
+    asset_preview_image_path:
         definition: '@asset_preview_directory/v{version}/{Step}_{Asset}[_p{part}][_v{variant}][_s{subVariant}][_{lod}].v{version}.{timestamp}.exr'
 
     # SHOT TEMPLATE.
     shot_preview_directory:
       definition: '@shot_work_root/review'
 
-    shot_movie_previews:
+    shot_preview_movie_path:
         definition: '@shot_preview_directory/v{version}/{Step}_{Shot}.v{version}.{movie_extension}'
 
-    shot_image_previews:
+    shot_preview_image_path:
         definition: '@shot_preview_directory/v{version}/{Step}_{Shot}.v{version}.{timestamp}.exr'

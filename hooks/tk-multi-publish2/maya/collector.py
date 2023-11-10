@@ -16,11 +16,11 @@ import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-from pipelineFramework.shotgrid                     import Shotgrid
 from pipelineFramework.shotgrid                     import SGAsset
 from pipelineFramework.shotgrid                     import SGShot
 from pipelineFramework.maya.asset                   import MAsset
 
+from pipelineFramework.maya.shotgrid                import MShotgrid
 from pipelineFramework.maya.shotgrid.collectors     import MayaCollectorModeling
 from pipelineFramework.maya.shotgrid.collectors     import MayaCollectorRig
 from pipelineFramework.maya.shotgrid.collectors     import MayaCollectorShading
@@ -73,55 +73,49 @@ class MayaSessionCollector(HookBaseClass):
         :param parent_item: Root item instance
 
         """
-
         # Get shotgrid api from pipelineFramework.
-        sg = Shotgrid()
-
-        entity = sg.contextEntity
-
-        print(entity)
-
+        shotgrid    = MShotgrid()
+        # Get the current context entity.
+        entity      = shotgrid.contextEntity
+        step        = shotgrid.contextStep
         # Check the current entity type.
         if(isinstance(entity, SGAsset)):
             collector = None
             # Set the P3D publish pipeline.
-            if(sg.contextStep.name == "Model" or
-                sg.contextStep.name == "UV"):
-                print("Collect data for Modeling or UV publish")
-                collector = MayaCollectorModeling(self)
+            if(step.name == "Model" or
+                step.name == "UV"):
+                collector = MayaCollectorModeling(self, shotgrid)
 
-            elif(sg.contextStep.name == "Rig"):
+            elif(step.name == "Rig"):
                 # Collect the data for a Rig Publish.
-                collector = MayaCollectorRig(self)
+                collector = MayaCollectorRig(self, shotgrid)
 
-            elif(sg.contextStep.name == "Shading"):
+            elif(step.name == "Shading"):
                 # Collect the data for the shading publish.
-                collector = MayaCollectorShading(self)
+                collector = MayaCollectorShading(self, shotgrid)
 
-            elif(sg.contextStep.name == "Set Dress Asset"):
+            elif(step.name == "Set Dress Asset"):
                 # Collect the data for the set dress publish.
                 collector.collect_asset_sceneDescription(settings, parent_item)
 
             collector.collect(settings, parent_item)
 
-
         elif(isinstance(entity, SGShot)):
             collector = None
-            if(sg.contextStep.name == "Animation"):
-                print("Publish Animation")
-                collector = MayaCollectorAnimation(self)
+            if(step.name == "Animation"):
+                collector = MayaCollectorAnimation(self, shotgrid)
 
-            elif(sg.contextStep.name == "Layout"):
+            elif(step.name == "Layout"):
                 collector.collect_shot_sceneDescription(settings, parent_item)
                 collector.collect_shot_camera(settings, parent_item)
 
-            elif(sg.contextStep.name == "Set Dressing"):
+            elif(step.name == "Set Dressing"):
                 collector.collect_shot_sceneDescription(settings, parent_item)
                 
-            elif(sg.contextStep.name == "Lighting"):
+            elif(step.name == "Lighting"):
                 pass
 
-            elif(sg.contextStep.name == "Rendering"):
+            elif(step.name == "Rendering"):
                 pass
 
             collector.collect(settings, parent_item)
