@@ -16,7 +16,7 @@ paths:
         definition: '@asset_render_directory/assFiles'
 
     asset_render_assFile_path:
-        definition: '@asset_render_assFiles_directory/[{variant}/]{renderLayer}/{sceneName}_{renderLayer}[.{timestamp}].ass'
+        definition: '@asset_render_assFiles_directory/[{variant}/]{renderLayer}/{Step}_{Asset}[_p{part}][_v{variant}][_s{subVariant}][_{lod}]_{renderLayer}.v{version}[.{timestamp}].ass'
 
     # SHOT TEMPLATES
 
@@ -33,4 +33,4 @@ paths:
         definition: "@shot_render_directory/assFiles"
 
     shot_render_assFile_path:
-        definition: "@shot_render_assFile_directory/{renderLayer}/{sceneName}_{renderLayer}[.{timestamp}].ass"
+        definition: "@shot_render_assFile_directory/{renderLayer}/{Step}_{Shot}_{renderLayer}.v{version}[.{timestamp}].ass"

@@ -9,6 +9,10 @@ paths:
     houdini_asset_work:
         definition: '@houdini_asset_work_area/{Step}_{Asset}[_p{part}][_v{variant}][_s{subVariant}][_{lod}]_{name}.v{version}.hipnc'
 
+    houdini_asset_render_scene_path:
+        definition: '@houdini_asset_work_area/{Step}_{Asset}[_p{part}][_v{variant}][_s{subVariant}][_{lod}]_renderScene.v{version}.hipnc'
+
+
     # ASSET PUBLISH.
 
     # define the location of a publish area
@@ -25,6 +29,9 @@ paths:
         definition: '@shot_work_root/houdini'
     houdini_shot_work:
         definition: '@houdini_shot_work_area/{Step}_{Shot}_{name}.v{version}.hipnc'
+
+    houdini_shot_render_scene_path:
+        definition: '@houdini_shot_work_area/{Step}_{Shot}_renderScene.v{version}.hipnc'
 
     # SHOT PUBLISH.
 
