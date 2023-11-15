@@ -193,6 +193,26 @@ class MayaActions(HookBaseClass):
                 }
             )
 
+        if("importShotAlembic" in actions):
+            action_instances.append(
+                {
+                    "name"          : "importShotAlembic",
+                    "params"        : None,
+                    "caption"       : "Import Alembic",
+                    "description"   : "Create a standin asset instance."
+                }
+            )
+
+        if("replaceShotAlembicSelected" in actions):
+            action_instances.append(
+                {
+                    "name"          : "replaceShotAlembicSelected",
+                    "params"        : None,
+                    "caption"       : "Replace Alembic",
+                    "description"   : "Update the stand in alembic path for selected asset."
+                }
+            )
+
         if "texture_node" in actions:
             action_instances.append(
                 {
@@ -281,6 +301,17 @@ class MayaActions(HookBaseClass):
         path = six.ensure_str(self.get_publish_path(sg_publish_data))
 
 
+        if( name == "importShotAlembic"):
+            self._importShotAlembic(
+                path,
+                sg_publish_data
+            )
+
+        if( name == "replaceShotAlembicSelected"):
+            self._replaceShotAlembicSelected(
+                sg_publish_data
+            )
+
         if( name == "importWithoutNamespace"):
             self._importWithoutNamespace(
                 path, 
@@ -344,6 +375,21 @@ class MayaActions(HookBaseClass):
 
     ##############################################################################################################
     # helper methods which can be subclassed in custom hooks to fine tune the behaviour of things
+
+    def _replaceShotAlembicSelected(self,
+            sg_publish_data:dict):
+        loader = LoaderAsset()
+        loader.replaceShotAssetAlembicStandin(
+            sg_publish_data) 
+
+    def _importShotAlembic(self,
+            path:str,
+            sg_publish_data:dict):
+        
+        loader = LoaderAsset()
+        loader.loadShotAssetAlembicAsStandin(
+            path,
+            sg_publish_data)       
 
     def _replaceSelectedInstanceReference(self, 
             path:str, 

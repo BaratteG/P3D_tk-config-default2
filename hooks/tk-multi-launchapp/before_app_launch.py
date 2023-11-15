@@ -104,14 +104,14 @@ class BeforeAppLaunch(tank.Hook):
                 self.addToEnvironmentEnd("PYTHONPATH", "C:\\Users\\guill\\Documents\\DEV\\PipelineFramework")
             elif(devType is "SERVER"):
                 self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\0.8.0")
-                self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\0.5.0")
+                self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\0.6.0")
             elif(devType is "DEV"):
                 self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\farmTools\\dev")
                 self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\pipelineFramework\\dev")
 
 
             # Add Studio Library.
-            self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\studiolibrary\\2.9.6.b3\\src")
+            self.addToEnvironmentEnd("PYTHONPATH", "Z:\\P3DTools\\productionPackages\\studiolibrary\\2.14.1\\src")
             # Add Rag doll.
             self.addToEnvironmentEnd("MAYA_MODULE_PATH", "Z:\\P3DTools\\productionPackages\\ragdoll\\2022.07.20")
 
